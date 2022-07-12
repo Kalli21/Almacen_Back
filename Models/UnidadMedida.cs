@@ -14,9 +14,10 @@ public class UnidadMedida
 
     [Key]
     public string cod_und_medida { get; set; }
+    [Required]
     public string des_und_medida { get; set; }
     public string Obs { get; set; }
 
 
-    public virtual ICollection<Articulo> Articulo { get; set; }
+    public virtual ICollection<Articulo> Articulo { get; }
 }

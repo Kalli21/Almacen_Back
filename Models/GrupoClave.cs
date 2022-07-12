@@ -16,8 +16,11 @@ public class GrupoClave
 
     [Key]
     public long cod_clave { get; set; }
+    [Required]
     public string Cod_funcionario { get; set; }
+    [Required]
     public string Cod_grupo { get; set; }
+    [Required]
     public string clave { get; set; }
     public string apoya_a { get; set; }
     public string ppp { get; set; }
@@ -25,9 +28,9 @@ public class GrupoClave
     [ForeignKey("Cod_grupo")]
     public virtual GrupoAcceso GrupoAcceso { get; set; }
 
-    public virtual ICollection<Ingreso> Ingreso { get; set; }
+    public virtual ICollection<Ingreso> Ingreso { get; }
 
-    public virtual ICollection<Pedido> Pedido { get; set; }
+    public virtual ICollection<Pedido> Pedido { get; }
 
-    public virtual ICollection<Salida> Salida { get; set; }
+    public virtual ICollection<Salida> Salida { get; }
 }

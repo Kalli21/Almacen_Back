@@ -14,18 +14,23 @@ public class Ingreso
 
     [Key]
     public long id_ingreso { get; set; }
+    [Required]
     public long cod_clave { get; set; }
+    [Required]
     public string cod_proveedor { get; set; }
+    [Required]
     public string cod_almacen { get; set; }
     public string Num_guia_ingreso { get; set; }
+    [Required]
     public bool Importacion { get; set; }
+    [Required]
     public System.DateTime Fecha_ingreso { get; set; }
     public string Obs { get; set; }
 
     [ForeignKey("cod_almacen")]
     public virtual Almacen Almacen { get; set; }
 
-    public virtual ICollection<DetIngreso> DetIngreso { get; set; }
+    public virtual ICollection<DetIngreso> DetIngreso { get; }
 
     [ForeignKey("cod_clave")]
     public virtual GrupoClave GrupoClave { get; set; }

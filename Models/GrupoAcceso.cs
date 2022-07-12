@@ -16,5 +16,5 @@ public class GrupoAcceso
     public string Cod_grupo { get; set; }
     public string Descripcion { get; set; }
 
-     public virtual ICollection<GrupoClave> GrupoClave { get; set; }
+     public virtual ICollection<GrupoClave> GrupoClave { get; }
 }

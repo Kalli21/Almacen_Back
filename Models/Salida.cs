@@ -14,22 +14,28 @@ public class Salida
     }
     [Key]
     public long id_salida { get; set; }
+    [Required]
     public long cod_clave { get; set; }
+    [Required]
     public string cod_almacen { get; set; }
     public string num_guia_salida { get; set; }
+    [Required]
     public bool despacho_pedido { get; set; }
+    [Required]
     public bool donacion { get; set; }
+    [Required]
     public bool venta { get; set; }
+    [Required]
     public System.DateTime Fecha_salida { get; set; }
     public string Obs { get; set; }
 
     [ForeignKey("cod_almacen")]
     public virtual Almacen Almacen { get; set; }
 
-    public virtual ICollection<DetSalida> DetSalida { get; set; }
+    public virtual ICollection<DetSalida> DetSalida { get; }
 
     [ForeignKey("cod_clave")]
     public virtual GrupoClave GrupoClave { get; set; }
 
-    public virtual ICollection<Pedido> Pedido { get; set; }
+    public virtual ICollection<Pedido> Pedido { get; }
 }

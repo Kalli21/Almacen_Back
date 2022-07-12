@@ -15,6 +15,7 @@ public class Proveedor
 
     [Key]
     public string cod_proveedor { get; set; }
+    [Required]
     public string razon_social { get; set; }
     public string Cod_categoria { get; set; }
     public string direccion { get; set; }
@@ -26,6 +27,7 @@ public class Proveedor
     public string Obs { get; set; }
     public string contacto { get; set; }
     public string beneficiario { get; set; }
+    [Required]
     public string activo { get; set; }
     public string RUC { get; set; }
     public string codigoPostal { get; set; }
@@ -36,7 +38,7 @@ public class Proveedor
     [ForeignKey("Cod_categoria")]
     public virtual Categoria Categoria { get; set; }
 
-    public virtual ICollection<Ingreso> Ingreso { get; set; }
+    public virtual ICollection<Ingreso> Ingreso { get; }
 
-    public virtual ICollection<IngresoSalida> IngresoSalida { get; set; }
+    public virtual ICollection<IngresoSalida> IngresoSalida { get; }
 }

@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Almacen_Back.Models;
@@ -5,11 +6,15 @@ namespace Almacen_Back.Models;
 [Table("AL_DET_INGRESO")]
 public class DetIngreso
 {
+    [Key]
+    public int Id { get; set; }
+    [Required]
     public long cod_articulo { get; set; }
+    [Required]
     public long id_ingreso { get; set; }
-    public Nullable<decimal> cant_art_ingreso { get; set; }
-    public Nullable<decimal> prec_unit_ingreso { get; set; }
-    public string Obs { get; set; }
+    public Nullable<double> cant_art_ingreso { get; set; }
+    public Nullable<double> prec_unit_ingreso { get; set; }
+    public string? Obs { get; set; }
 
     [ForeignKey("cod_articulo")]
     public virtual Articulo Articulo { get; set; }

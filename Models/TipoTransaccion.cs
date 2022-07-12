@@ -14,9 +14,11 @@ public class TipoTransaccion
 
     [Key]
     public string cod_tipo_transaccion { get; set; }
+    [Required]
     public string descripción { get; set; }
+    [Required]
     public bool ingreso { get; set; }
 
 
-    public virtual ICollection<IngresoSalida> IngresoSalida { get; set; }
+    public virtual ICollection<IngresoSalida> IngresoSalida { get; }
 }
