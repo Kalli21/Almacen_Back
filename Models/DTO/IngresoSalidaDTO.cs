@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace Almacen_Back.Models.DTO;
 
@@ -33,7 +34,7 @@ public class IngresoSalidaDTO
 
     [ForeignKey("cod_almacen")]
     public virtual Almacen? Almacen { get; set; }
-
+    
     public virtual ICollection<DetIngresoSalida> DetIngresoSalida { get; }
 
     [ForeignKey("cod_proveedor")]

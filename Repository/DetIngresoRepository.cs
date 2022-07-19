@@ -27,7 +27,7 @@ namespace Almacen_Back.Repository
         
         }
 
-        public async Task<bool> DeleteDetIngreso(string id)
+        public async Task<bool> DeleteDetIngreso(long id)
         {
             try
             {
@@ -45,7 +45,7 @@ namespace Almacen_Back.Repository
             }
         }
 
-        public async Task<DetIngresoDTO> GetDetIngresoById(string id)
+        public async Task<DetIngresoDTO> GetDetIngresoById(long id)
         {
             DetIngreso detIngreso = await _db.DetIngreso.FindAsync(id);
             return _mapper.Map<DetIngresoDTO>(detIngreso);

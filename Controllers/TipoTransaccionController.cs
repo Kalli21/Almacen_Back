@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Almacen_Back.Data;
-using Almacen_Back.Models;
+﻿using Microsoft.AspNetCore.Mvc;
+using Almacen_Back.Models.DTO;
+using Almacen_Back.Services.Interfaces;
 
 namespace Almacen_Back.Controllers
 {
@@ -14,125 +8,49 @@ namespace Almacen_Back.Controllers
     [ApiController]
     public class TipoTransaccionController : ControllerBase
     {
-        private readonly Almacen_Back_Context _context;
+        private readonly ITipoTransaccionService _tipoTransaccionService;
 
-        public TipoTransaccionController(Almacen_Back_Context context)
+        public TipoTransaccionController(ITipoTransaccionService tipoTransaccionService)
         {
-            _context = context;
+            _tipoTransaccionService = tipoTransaccionService;
         }
 
         // GET: api/TipoTransaccion
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<TipoTransaccion>>> GetTipoTransaccion()
+        public async Task<ActionResult<IEnumerable<TipoTransaccionDTO>>> GetTipoTransaccion()
         {
-          if (_context.TipoTransaccion == null)
-          {
-              return NotFound();
-          }
-            return await _context.TipoTransaccion.ToListAsync();
+            return await _tipoTransaccionService.GetTipoTransaccions();
         }
 
         // GET: api/TipoTransaccion/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<TipoTransaccion>> GetTipoTransaccion(string id)
+        public async Task<ActionResult<TipoTransaccionDTO>> GetTipoTransaccion(string id)
         {
-          if (_context.TipoTransaccion == null)
-          {
-              return NotFound();
-          }
-            var tipoTransaccion = await _context.TipoTransaccion.FindAsync(id);
-
-            if (tipoTransaccion == null)
-            {
-                return NotFound();
-            }
-
-            return tipoTransaccion;
+            return await _tipoTransaccionService.GetTipoTransaccionById(id);
         }
 
         // PUT: api/TipoTransaccion/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutTipoTransaccion(string id, TipoTransaccion tipoTransaccion)
+        public async Task<IActionResult> PutTipoTransaccion(string id, TipoTransaccionDTO tipoTransaccionDTO)
         {
-            if (id != tipoTransaccion.cod_tipo_transaccion)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(tipoTransaccion).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!TipoTransaccionExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
+            return await _tipoTransaccionService.UpdateTipoTransaccion(id,tipoTransaccionDTO);
         }
 
         // POST: api/TipoTransaccion
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<TipoTransaccion>> PostTipoTransaccion(TipoTransaccion tipoTransaccion)
+        public async Task<ActionResult<TipoTransaccionDTO>> PostTipoTransaccion(TipoTransaccionDTO tipoTransaccionDTO)
         {
-          if (_context.TipoTransaccion == null)
-          {
-              return Problem("Entity set 'Almacen_Back_Context.TipoTransaccion'  is null.");
-          }
-            _context.TipoTransaccion.Add(tipoTransaccion);
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateException)
-            {
-                if (TipoTransaccionExists(tipoTransaccion.cod_tipo_transaccion))
-                {
-                    return Conflict();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return CreatedAtAction("GetTipoTransaccion", new { id = tipoTransaccion.cod_tipo_transaccion }, tipoTransaccion);
+            return await _tipoTransaccionService.CreateTipoTransaccion(tipoTransaccionDTO);
         }
 
         // DELETE: api/TipoTransaccion/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteTipoTransaccion(string id)
         {
-            if (_context.TipoTransaccion == null)
-            {
-                return NotFound();
-            }
-            var tipoTransaccion = await _context.TipoTransaccion.FindAsync(id);
-            if (tipoTransaccion == null)
-            {
-                return NotFound();
-            }
-
-            _context.TipoTransaccion.Remove(tipoTransaccion);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
+            return await _tipoTransaccionService.DeleteTipoTransaccion(id);
         }
 
-        private bool TipoTransaccionExists(string id)
-        {
-            return (_context.TipoTransaccion?.Any(e => e.cod_tipo_transaccion == id)).GetValueOrDefault();
-        }
     }
 }

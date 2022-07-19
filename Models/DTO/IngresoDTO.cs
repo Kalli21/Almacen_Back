@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace Almacen_Back.Models.DTO;
 
@@ -27,7 +28,7 @@ public class IngresoDTO
     public string Obs { get; set; }
 
     public virtual Almacen Almacen { get; set; }
-
+    
     public virtual ICollection<DetIngreso> DetIngreso { get; }
 
     public virtual GrupoClave GrupoClave { get; set; }

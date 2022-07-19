@@ -27,7 +27,7 @@ namespace Almacen_Back.Repository
         
         }
 
-        public async Task<bool> DeleteSalida(string id)
+        public async Task<bool> DeleteSalida(long id)
         {
             try
             {
@@ -45,7 +45,7 @@ namespace Almacen_Back.Repository
             }
         }
 
-        public async Task<SalidaDTO> GetSalidaById(string id)
+        public async Task<SalidaDTO> GetSalidaById(long id)
         {
             Salida salida = await _db.Salida.FindAsync(id);
             return _mapper.Map<SalidaDTO>(salida);

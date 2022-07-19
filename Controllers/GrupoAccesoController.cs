@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Almacen_Back.Data;
-using Almacen_Back.Models;
+﻿using Microsoft.AspNetCore.Mvc;
+using Almacen_Back.Models.DTO;
+using Almacen_Back.Services.Interfaces;
 
 namespace Almacen_Back.Controllers
 {
@@ -14,125 +8,49 @@ namespace Almacen_Back.Controllers
     [ApiController]
     public class GrupoAccesoController : ControllerBase
     {
-        private readonly Almacen_Back_Context _context;
+        private readonly IGrupoAccesoService _grupoAccesoService;
 
-        public GrupoAccesoController(Almacen_Back_Context context)
+        public GrupoAccesoController(IGrupoAccesoService grupoAccesoService)
         {
-            _context = context;
+            _grupoAccesoService = grupoAccesoService;
         }
 
         // GET: api/GrupoAcceso
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<GrupoAcceso>>> GetGrupoAcceso()
+        public async Task<ActionResult<IEnumerable<GrupoAccesoDTO>>> GetGrupoAcceso()
         {
-          if (_context.GrupoAcceso == null)
-          {
-              return NotFound();
-          }
-            return await _context.GrupoAcceso.ToListAsync();
+            return await _grupoAccesoService.GetGrupoAccesos();
         }
 
         // GET: api/GrupoAcceso/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<GrupoAcceso>> GetGrupoAcceso(string id)
+        public async Task<ActionResult<GrupoAccesoDTO>> GetGrupoAcceso(string id)
         {
-          if (_context.GrupoAcceso == null)
-          {
-              return NotFound();
-          }
-            var grupoAcceso = await _context.GrupoAcceso.FindAsync(id);
-
-            if (grupoAcceso == null)
-            {
-                return NotFound();
-            }
-
-            return grupoAcceso;
+            return await _grupoAccesoService.GetGrupoAccesoById(id);
         }
 
         // PUT: api/GrupoAcceso/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutGrupoAcceso(string id, GrupoAcceso grupoAcceso)
+        public async Task<IActionResult> PutGrupoAcceso(string id, GrupoAccesoDTO grupoAccesoDTO)
         {
-            if (id != grupoAcceso.Cod_grupo)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(grupoAcceso).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!GrupoAccesoExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
+            return await _grupoAccesoService.UpdateGrupoAcceso(id,grupoAccesoDTO);
         }
 
         // POST: api/GrupoAcceso
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<GrupoAcceso>> PostGrupoAcceso(GrupoAcceso grupoAcceso)
+        public async Task<ActionResult<GrupoAccesoDTO>> PostGrupoAcceso(GrupoAccesoDTO grupoAccesoDTO)
         {
-          if (_context.GrupoAcceso == null)
-          {
-              return Problem("Entity set 'Almacen_Back_Context.GrupoAcceso'  is null.");
-          }
-            _context.GrupoAcceso.Add(grupoAcceso);
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateException)
-            {
-                if (GrupoAccesoExists(grupoAcceso.Cod_grupo))
-                {
-                    return Conflict();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return CreatedAtAction("GetGrupoAcceso", new { id = grupoAcceso.Cod_grupo }, grupoAcceso);
+            return await _grupoAccesoService.CreateGrupoAcceso(grupoAccesoDTO);
         }
 
         // DELETE: api/GrupoAcceso/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteGrupoAcceso(string id)
         {
-            if (_context.GrupoAcceso == null)
-            {
-                return NotFound();
-            }
-            var grupoAcceso = await _context.GrupoAcceso.FindAsync(id);
-            if (grupoAcceso == null)
-            {
-                return NotFound();
-            }
-
-            _context.GrupoAcceso.Remove(grupoAcceso);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
+            return await _grupoAccesoService.DeleteGrupoAcceso(id);
         }
 
-        private bool GrupoAccesoExists(string id)
-        {
-            return (_context.GrupoAcceso?.Any(e => e.Cod_grupo == id)).GetValueOrDefault();
-        }
     }
 }

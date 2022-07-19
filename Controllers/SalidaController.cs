@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Almacen_Back.Data;
-using Almacen_Back.Models;
+﻿using Microsoft.AspNetCore.Mvc;
+using Almacen_Back.Models.DTO;
+using Almacen_Back.Services.Interfaces;
 
 namespace Almacen_Back.Controllers
 {
@@ -14,111 +8,50 @@ namespace Almacen_Back.Controllers
     [ApiController]
     public class SalidaController : ControllerBase
     {
-        private readonly Almacen_Back_Context _context;
+        private readonly ISalidaService _salidaService;
 
-        public SalidaController(Almacen_Back_Context context)
+        public SalidaController(ISalidaService salidaService)
         {
-            _context = context;
+            _salidaService = salidaService;
         }
 
         // GET: api/Salidas
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Salida>>> GetSalida()
+        public async Task<ActionResult<IEnumerable<SalidaDTO>>> GetSalida()
         {
-          if (_context.Salida == null)
-          {
-              return NotFound();
-          }
-            return await _context.Salida.ToListAsync();
+            return await _salidaService.GetSalidas();
         }
 
         // GET: api/Salidas/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Salida>> GetSalida(long id)
+        public async Task<ActionResult<SalidaDTO>> GetSalida(long id)
         {
-          if (_context.Salida == null)
-          {
-              return NotFound();
-          }
-            var salida = await _context.Salida.FindAsync(id);
-
-            if (salida == null)
-            {
-                return NotFound();
-            }
-
-            return salida;
+            return await _salidaService.GetSalidaById(id);
         }
 
         // PUT: api/Salidas/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutSalida(long id, Salida salida)
+        public async Task<IActionResult> PutSalida(long id, SalidaDTO salidaDTO)
         {
-            if (id != salida.id_salida)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(salida).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!SalidaExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
+            return await _salidaService.UpdateSalida(id,salidaDTO);
         }
 
         // POST: api/Salidas
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Salida>> PostSalida(Salida salida)
+        public async Task<ActionResult<SalidaDTO>> PostSalida(SalidaDTO salidaDTO)
         {
-          if (_context.Salida == null)
-          {
-              return Problem("Entity set 'Almacen_Back_Context.Salida'  is null.");
-          }
-            _context.Salida.Add(salida);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetSalida", new { id = salida.id_salida }, salida);
+          return await _salidaService.CreateSalida(salidaDTO);
         }
 
         // DELETE: api/Salidas/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteSalida(long id)
         {
-            if (_context.Salida == null)
-            {
-                return NotFound();
-            }
-            var salida = await _context.Salida.FindAsync(id);
-            if (salida == null)
-            {
-                return NotFound();
-            }
-
-            _context.Salida.Remove(salida);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
+            return await _salidaService.DeleteSalida(id);
         }
 
-        private bool SalidaExists(long id)
-        {
-            return (_context.Salida?.Any(e => e.id_salida == id)).GetValueOrDefault();
-        }
+        
     }
 }

@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace Almacen_Back.Models;
 
@@ -22,10 +23,10 @@ public class Categoria
     [Required]
     public string nom_categoria { get; set; }
     public string des_categoria { get; set; }
-    public string Obs { get; set; }
+    public string? Obs { get; set; }
 
-
+    [JsonIgnore]
     public virtual ICollection<Articulo> Articulo { get; }
-
+    [JsonIgnore]
     public virtual ICollection<Proveedor> Proveedor { get; }
 }

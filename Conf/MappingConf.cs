@@ -60,6 +60,9 @@ namespace Almacen_Back.Conf
 
                 config.CreateMap<UnidadMedidaDTO, UnidadMedida>();
                 config.CreateMap<UnidadMedida, UnidadMedidaDTO>();
+
+                config.CreateMap<UserDTO, User>();
+                config.CreateMap<User, UserDTO>();
                 
             });
 

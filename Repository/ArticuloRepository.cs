@@ -26,7 +26,7 @@ namespace Almacen_Back.Repository
             return _mapper.Map<Articulo, ArticuloDTO>(articulo);
         }
 
-        public async Task<bool> DeleteArticulo(string id)
+        public async Task<bool> DeleteArticulo(long id)
         {
              try
             {
@@ -44,7 +44,7 @@ namespace Almacen_Back.Repository
             }
         }
 
-        public async Task<ArticuloDTO> GetArticuloById(string id)
+        public async Task<ArticuloDTO> GetArticuloById(long id)
         {
             Articulo articulo = await _db.Articulo.FindAsync(id);
             return _mapper.Map<ArticuloDTO>(articulo);

@@ -266,3 +266,7 @@ E:\PractiCAN\ProyectoAlmacen\Almacen_Back\bin\Debug\net6.0\AutoMapper.dll
 E:\PractiCAN\ProyectoAlmacen\Almacen_Back\bin\Debug\net6.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
 E:\PractiCAN\ProyectoAlmacen\Almacen_Back\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 E:\PractiCAN\ProyectoAlmacen\Almacen_Back\bin\Debug\net6.0\Swashbuckle.AspNetCore.Annotations.dll
+E:\PractiCAN\ProyectoAlmacen\Almacen_Back\bin\Debug\net6.0\Microsoft.Extensions.DependencyModel.dll
+E:\PractiCAN\ProyectoAlmacen\Almacen_Back\bin\Debug\net6.0\Scrutor.dll
+E:\PractiCAN\ProyectoAlmacen\Almacen_Back\bin\Debug\net6.0\Swashbuckle.AspNetCore.Filters.dll
+E:\PractiCAN\ProyectoAlmacen\Almacen_Back\bin\Debug\net6.0\Swashbuckle.AspNetCore.Filters.Abstractions.dll

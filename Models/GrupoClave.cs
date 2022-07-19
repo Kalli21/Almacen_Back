@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace Almacen_Back.Models;
 
@@ -18,19 +19,18 @@ public class GrupoClave
     public long cod_clave { get; set; }
     [Required]
     public string Cod_funcionario { get; set; }
-    [Required]
+    [ForeignKey("Cod_grupo")]
     public string Cod_grupo { get; set; }
     [Required]
     public string clave { get; set; }
     public string apoya_a { get; set; }
     public string ppp { get; set; }
 
-    [ForeignKey("Cod_grupo")]
-    public virtual GrupoAcceso GrupoAcceso { get; set; }
-
+    public virtual GrupoAcceso? GrupoAcceso { get; set; }
+    [JsonIgnore]
     public virtual ICollection<Ingreso> Ingreso { get; }
-
+    [JsonIgnore]
     public virtual ICollection<Pedido> Pedido { get; }
-
+    [JsonIgnore]
     public virtual ICollection<Salida> Salida { get; }
 }

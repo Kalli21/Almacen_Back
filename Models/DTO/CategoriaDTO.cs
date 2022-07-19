@@ -1,4 +1,6 @@
 
+using System.Text.Json.Serialization;
+
 namespace Almacen_Back.Models.DTO;
 
 public class CategoriaDTO
@@ -21,8 +23,8 @@ public class CategoriaDTO
     public string des_categoria { get; set; }
     public string Obs { get; set; }
 
-
+    
     public virtual ICollection<Articulo> Articulo { get; }
-
+    
     public virtual ICollection<Proveedor> Proveedor { get; }
 }

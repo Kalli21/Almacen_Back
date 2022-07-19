@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Almacen_Back.Data;
-using Almacen_Back.Models;
+﻿using Microsoft.AspNetCore.Mvc;
+using Almacen_Back.Models.DTO;
+using Almacen_Back.Services.Interfaces;
 
 namespace Almacen_Back.Controllers
 {
@@ -14,111 +8,49 @@ namespace Almacen_Back.Controllers
     [ApiController]
     public class DetIngresoController : ControllerBase
     {
-        private readonly Almacen_Back_Context _context;
+        private readonly IDetIngresoService _detIngresoService;
 
-        public DetIngresoController(Almacen_Back_Context context)
+        public DetIngresoController(IDetIngresoService detIngresoService)
         {
-            _context = context;
+            _detIngresoService = detIngresoService;
         }
 
         // GET: api/DetIngreso
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<DetIngreso>>> GetDetIngreso()
+        public async Task<ActionResult<IEnumerable<DetIngresoDTO>>> GetDetIngreso()
         {
-          if (_context.DetIngreso == null)
-          {
-              return NotFound();
-          }
-            return await _context.DetIngreso.ToListAsync();
+            return await _detIngresoService.GetDetIngresos();
         }
 
         // GET: api/DetIngreso/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<DetIngreso>> GetDetIngreso(int id)
+        public async Task<ActionResult<DetIngresoDTO>> GetDetIngreso(int id)
         {
-          if (_context.DetIngreso == null)
-          {
-              return NotFound();
-          }
-            var detIngreso = await _context.DetIngreso.FindAsync(id);
-
-            if (detIngreso == null)
-            {
-                return NotFound();
-            }
-
-            return detIngreso;
+            return await _detIngresoService.GetDetIngresoById(id);
         }
 
         // PUT: api/DetIngreso/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutDetIngreso(int id, DetIngreso detIngreso)
+        public async Task<IActionResult> PutDetIngreso(int id, DetIngresoDTO detIngresoDTO)
         {
-            if (id != detIngreso.Id)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(detIngreso).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!DetIngresoExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
+            return await _detIngresoService.UpdateDetIngreso(id,detIngresoDTO); 
         }
 
         // POST: api/DetIngreso
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<DetIngreso>> PostDetIngreso(DetIngreso detIngreso)
+        public async Task<ActionResult<DetIngresoDTO>> PostDetIngreso(DetIngresoDTO detIngresoDTO)
         {
-          if (_context.DetIngreso == null)
-          {
-              return Problem("Entity set 'Almacen_Back_Context.DetIngreso'  is null.");
-          }
-            _context.DetIngreso.Add(detIngreso);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetDetIngreso", new { id = detIngreso.Id }, detIngreso);
+            return await _detIngresoService.CreateDetIngreso(detIngresoDTO);
         }
 
         // DELETE: api/DetIngreso/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteDetIngreso(int id)
         {
-            if (_context.DetIngreso == null)
-            {
-                return NotFound();
-            }
-            var detIngreso = await _context.DetIngreso.FindAsync(id);
-            if (detIngreso == null)
-            {
-                return NotFound();
-            }
-
-            _context.DetIngreso.Remove(detIngreso);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
+            return await _detIngresoService.DeleteDetIngreso(id);
         }
 
-        private bool DetIngresoExists(int id)
-        {
-            return (_context.DetIngreso?.Any(e => e.Id == id)).GetValueOrDefault();
-        }
     }
 }

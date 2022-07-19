@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Almacen_Back.Data;
-using Almacen_Back.Models;
+﻿using Microsoft.AspNetCore.Mvc;
+using Almacen_Back.Models.DTO;
+using Almacen_Back.Services.Interfaces;
 
 namespace Almacen_Back.Controllers
 {
@@ -14,111 +8,49 @@ namespace Almacen_Back.Controllers
     [ApiController]
     public class DetPedidoController : ControllerBase
     {
-        private readonly Almacen_Back_Context _context;
+        private readonly IDetPedidoService _detPedidoService;
 
-        public DetPedidoController(Almacen_Back_Context context)
+        public DetPedidoController(IDetPedidoService detPedidoService)
         {
-            _context = context;
+            _detPedidoService = detPedidoService;
         }
 
         // GET: api/DetPedido
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<DetPedido>>> GetDetPedido()
+        public async Task<ActionResult<IEnumerable<DetPedidoDTO>>> GetDetPedido()
         {
-          if (_context.DetPedido == null)
-          {
-              return NotFound();
-          }
-            return await _context.DetPedido.ToListAsync();
+            return await _detPedidoService.GetDetPedidos();
         }
 
         // GET: api/DetPedido/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<DetPedido>> GetDetPedido(int id)
+        public async Task<ActionResult<DetPedidoDTO>> GetDetPedido(int id)
         {
-          if (_context.DetPedido == null)
-          {
-              return NotFound();
-          }
-            var detPedido = await _context.DetPedido.FindAsync(id);
-
-            if (detPedido == null)
-            {
-                return NotFound();
-            }
-
-            return detPedido;
+            return await _detPedidoService.GetDetPedidoById(id);
         }
 
         // PUT: api/DetPedido/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutDetPedido(int id, DetPedido detPedido)
+        public async Task<IActionResult> PutDetPedido(int id, DetPedidoDTO detPedidoDTO)
         {
-            if (id != detPedido.Id)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(detPedido).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!DetPedidoExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
+            return await _detPedidoService.UpdateDetPedido(id, detPedidoDTO);
         }
 
         // POST: api/DetPedido
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<DetPedido>> PostDetPedido(DetPedido detPedido)
+        public async Task<ActionResult<DetPedidoDTO>> PostDetPedido(DetPedidoDTO detPedidoDTO)
         {
-          if (_context.DetPedido == null)
-          {
-              return Problem("Entity set 'Almacen_Back_Context.DetPedido'  is null.");
-          }
-            _context.DetPedido.Add(detPedido);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetDetPedido", new { id = detPedido.Id }, detPedido);
+            return await _detPedidoService.CreateDetPedido(detPedidoDTO);
         }
 
         // DELETE: api/DetPedido/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteDetPedido(int id)
         {
-            if (_context.DetPedido == null)
-            {
-                return NotFound();
-            }
-            var detPedido = await _context.DetPedido.FindAsync(id);
-            if (detPedido == null)
-            {
-                return NotFound();
-            }
-
-            _context.DetPedido.Remove(detPedido);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
+            return await _detPedidoService.DeleteDetPedido(id);
         }
 
-        private bool DetPedidoExists(int id)
-        {
-            return (_context.DetPedido?.Any(e => e.Id == id)).GetValueOrDefault();
-        }
     }
 }

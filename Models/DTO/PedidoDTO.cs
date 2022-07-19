@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace Almacen_Back.Models.DTO;
 
@@ -43,10 +44,10 @@ public class PedidoDTO
     public string pedido_por { get; set; }
 
     public virtual Almacen Almacen { get; set; }
-
+    
     public virtual ICollection<DetPedido> DetPedido { get; }
 
     public virtual GrupoClave GrupoClave { get; set; }
-
+    
     public virtual ICollection<Salida> Salida { get; }
 }

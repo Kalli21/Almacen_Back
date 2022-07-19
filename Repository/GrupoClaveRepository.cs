@@ -27,7 +27,7 @@ namespace Almacen_Back.Repository
         
         }
 
-        public async Task<bool> DeleteGrupoClave(string id)
+        public async Task<bool> DeleteGrupoClave(long id)
         {
             try
             {
@@ -45,7 +45,7 @@ namespace Almacen_Back.Repository
             }
         }
 
-        public async Task<GrupoClaveDTO> GetGrupoClaveById(string id)
+        public async Task<GrupoClaveDTO> GetGrupoClaveById(long id)
         {
             GrupoClave grupoClave = await _db.GrupoClave.FindAsync(id);
             return _mapper.Map<GrupoClaveDTO>(grupoClave);

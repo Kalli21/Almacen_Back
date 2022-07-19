@@ -27,7 +27,7 @@ namespace Almacen_Back.Repository
         
         }
 
-        public async Task<bool> DeleteControlStock(string id)
+        public async Task<bool> DeleteControlStock(long id)
         {
             try
             {
@@ -45,7 +45,7 @@ namespace Almacen_Back.Repository
             }
         }
 
-        public async Task<ControlStockDTO> GetControlStockById(string id)
+        public async Task<ControlStockDTO> GetControlStockById(long id)
         {
             ControlStock controlStock = await _db.ControlStock.FindAsync(id);
             return _mapper.Map<ControlStockDTO>(controlStock);

@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace Almacen_Back.Models;
 
@@ -15,6 +16,6 @@ public class GrupoAcceso
     [Key]
     public string Cod_grupo { get; set; }
     public string Descripcion { get; set; }
-
-     public virtual ICollection<GrupoClave> GrupoClave { get; }
+    [JsonIgnore]
+    public virtual ICollection<GrupoClave> GrupoClave { get; }
 }

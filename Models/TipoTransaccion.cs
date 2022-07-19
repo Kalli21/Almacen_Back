@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace Almacen_Back.Models;
 
@@ -19,6 +20,6 @@ public class TipoTransaccion
     [Required]
     public bool ingreso { get; set; }
 
-
+    [JsonIgnore]
     public virtual ICollection<IngresoSalida> IngresoSalida { get; }
 }

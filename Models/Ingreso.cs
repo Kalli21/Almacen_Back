@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace Almacen_Back.Models;
 
@@ -14,11 +15,11 @@ public class Ingreso
 
     [Key]
     public long id_ingreso { get; set; }
-    [Required]
+    [ForeignKey("cod_clave")]
     public long cod_clave { get; set; }
-    [Required]
+    [ForeignKey("cod_proveedor")]
     public string cod_proveedor { get; set; }
-    [Required]
+    [ForeignKey("cod_almacen")]
     public string cod_almacen { get; set; }
     public string Num_guia_ingreso { get; set; }
     [Required]
@@ -27,13 +28,12 @@ public class Ingreso
     public System.DateTime Fecha_ingreso { get; set; }
     public string Obs { get; set; }
 
-    [ForeignKey("cod_almacen")]
+    
     public virtual Almacen Almacen { get; set; }
-
+    [JsonIgnore]
     public virtual ICollection<DetIngreso> DetIngreso { get; }
-
-    [ForeignKey("cod_clave")]
+    
     public virtual GrupoClave GrupoClave { get; set; }
-    [ForeignKey("cod_proveedor")]
+    
     public virtual Proveedor Proveedor { get; set; }
 }

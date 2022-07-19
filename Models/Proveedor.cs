@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace Almacen_Back.Models;
 
@@ -17,6 +18,7 @@ public class Proveedor
     public string cod_proveedor { get; set; }
     [Required]
     public string razon_social { get; set; }
+    [ForeignKey("Cod_categoria")]
     public string Cod_categoria { get; set; }
     public string direccion { get; set; }
     public string ciudad { get; set; }
@@ -35,10 +37,10 @@ public class Proveedor
     public string titulo { get; set; }
     public string saludo { get; set; }
 
-    [ForeignKey("Cod_categoria")]
+    
     public virtual Categoria Categoria { get; set; }
-
+    [JsonIgnore]
     public virtual ICollection<Ingreso> Ingreso { get; }
-
+    [JsonIgnore]
     public virtual ICollection<IngresoSalida> IngresoSalida { get; }
 }

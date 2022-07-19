@@ -1,5 +1,4 @@
-﻿using Almacen_Back.Models;
-using Almacen_Back.Models.DTO;
+﻿using Almacen_Back.Models.DTO;
 using Almacen_Back.Repository.Interfaces;
 using Almacen_Back.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
@@ -64,8 +63,8 @@ namespace Almacen_Back.Services
 
         public async Task<ActionResult<AlmacenDTO>> GetAlmacenById(string id)
         {
-            var alamcen = await _almacenRepository.GetAlmacenById(id);
-            if (alamcen == null)
+            var almacen = await _almacenRepository.GetAlmacenById(id);
+            if (almacen == null)
             {
                 _response.IsSuccess = false;
                 _response.DisplayMessage = "Almacen no Existe";
@@ -74,7 +73,7 @@ namespace Almacen_Back.Services
             }
             else
             {
-                _response.Result = alamcen;
+                _response.Result = almacen;
                 _response.DisplayMessage = "Información del almacen";
                 return new OkObjectResult(_response);
             }
@@ -99,8 +98,14 @@ namespace Almacen_Back.Services
 
         public async Task<IActionResult> UpdateAlmacen(string id, AlmacenDTO almacenDTO)
         {
+                        
             try
             {
+                if (id != almacenDTO.cod_almacen)
+                {
+                    _response.DisplayMessage = "El id no coincide";
+                    return new BadRequestObjectResult(_response);
+                }
                 AlmacenDTO model = await _almacenRepository.UpdateAlmacen(almacenDTO);
                 _response.Result = model;
                 return new OkObjectResult(_response);

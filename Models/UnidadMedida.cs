@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace Almacen_Back.Models;
 
@@ -18,6 +19,6 @@ public class UnidadMedida
     public string des_und_medida { get; set; }
     public string Obs { get; set; }
 
-
+    [JsonIgnore]
     public virtual ICollection<Articulo> Articulo { get; }
 }

@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace Almacen_Back.Models.DTO;
 
@@ -35,8 +36,8 @@ public class ProveedorDTO
     public string saludo { get; set; }
 
     public virtual Categoria Categoria { get; set; }
-
+    
     public virtual ICollection<Ingreso> Ingreso { get; }
-
+    
     public virtual ICollection<IngresoSalida> IngresoSalida { get; }
 }

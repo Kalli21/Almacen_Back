@@ -7,10 +7,10 @@ namespace Almacen_Back.Models;
 public class DetPedido
 {
     [Key]
-    public int Id { get; set; }
-    [Required]
+    public long Id { get; set; }
+    [ForeignKey("id_pedido")]
     public long id_pedido { get; set; }
-    [Required]
+    [ForeignKey("cod_articulo")]
     public long cod_articulo { get; set; }
     public Nullable<double> cant_pedida { get; set; }
     public Nullable<double> cant_aceptada { get; set; }
@@ -22,9 +22,8 @@ public class DetPedido
     [Required]
     public bool autoriza_compra { get; set; }
     public string Obs { get; set; }
-
-    [ForeignKey("cod_articulo")]
+    
     public virtual Articulo? Articulo { get; set; }
-    [ForeignKey("id_pedido")]
+    
     public virtual Pedido? Pedido { get; set; }
 }

@@ -6,10 +6,10 @@ namespace Almacen_Back.Services.Interfaces
     public interface IIngresoService
     {
         Task<ActionResult<IEnumerable<IngresoDTO>>> GetIngresos();
-        Task<ActionResult<IngresoDTO>> GetIngresoById(string id);
+        Task<ActionResult<IngresoDTO>> GetIngresoById(long id);
         Task<ActionResult<IngresoDTO>> CreateIngreso(IngresoDTO ingresoDTO);
-        Task<IActionResult> UpdateIngreso(string id , IngresoDTO ingresoDTO);
-        Task<IActionResult> DeleteIngreso(string id);
+        Task<IActionResult> UpdateIngreso(long id , IngresoDTO ingresoDTO);
+        Task<IActionResult> DeleteIngreso(long id);
         
     }
 }

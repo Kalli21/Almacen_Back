@@ -7,19 +7,19 @@ namespace Almacen_Back.Models;
 public class DetIngresoSalida
 {
     [Key]
-    public int Id { get; set; }
-    [Required]
+    public long Id { get; set; }
+    [ForeignKey("id_transaccion")]
     public long id_transaccion { get; set; }
-    [Required]
+    [ForeignKey("cod_articulo")]
     public long cod_articulo { get; set; }
     public Nullable<double> cant_articulo { get; set; }
     public Nullable<double> costo_unitario { get; set; }
     public string Obs { get; set; }
     public Nullable<System.DateTime> fecha_vencimiento { get; set; }
 
-    [ForeignKey("cod_articulo")]
+    
     public virtual Articulo Articulo { get; set; }
     
-    [ForeignKey("id_transaccion")]
+
     public virtual IngresoSalida IngresoSalida { get; set; }
 }

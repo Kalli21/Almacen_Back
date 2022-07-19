@@ -6,10 +6,10 @@ namespace Almacen_Back.Services.Interfaces
     public interface IArticuloService
     {
         Task<ActionResult<IEnumerable<ArticuloDTO>>> GetArticulos();
-        Task<ActionResult<ArticuloDTO>> GetArticuloById(string id);
+        Task<ActionResult<ArticuloDTO>> GetArticuloById(long id);
         Task<ActionResult<ArticuloDTO>> CreateArticulo(ArticuloDTO articuloDTO);
-        Task<IActionResult> UpdateArticulo(string id , ArticuloDTO articuloDTO);
-        Task<IActionResult> DeleteArticulo(string id);
+        Task<IActionResult> UpdateArticulo(long id , ArticuloDTO articuloDTO);
+        Task<IActionResult> DeleteArticulo(long id);
         
     }
 }

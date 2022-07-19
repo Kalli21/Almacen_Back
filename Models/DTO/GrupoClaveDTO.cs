@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace Almacen_Back.Models.DTO;
 
@@ -26,10 +27,11 @@ public class GrupoClaveDTO
     public string ppp { get; set; }
 
     public virtual GrupoAcceso GrupoAcceso { get; set; }
-
+    
     public virtual ICollection<Ingreso> Ingreso { get; }
-
+    
     public virtual ICollection<Pedido> Pedido { get; }
-
+    
     public virtual ICollection<Salida> Salida { get; }
+
 }

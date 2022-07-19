@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace Almacen_Back.Models;
 
@@ -18,12 +19,13 @@ public class IngresoSalida
     public long cod_clave { get; set; }
     [Required]
     public bool ingreso { get; set; }
-    [Required]
+    [ForeignKey("cod_tipo_transaccion")]
     public string cod_tipo_transaccion { get; set; }
     public string num_guia { get; set; }
     public Nullable<System.DateTime> fecha_transaccion { get; set; }
+    [ForeignKey("cod_proveedor")]
     public string cod_proveedor { get; set; }
-    [Required]
+    [ForeignKey("cod_almacen")]
     public string cod_almacen { get; set; }
     public string Obs { get; set; }
     [Required]
@@ -32,14 +34,13 @@ public class IngresoSalida
     public bool pendiente { get; set; }
     public Nullable<System.DateTime> fecha_proceso { get; set; }
 
-    [ForeignKey("cod_almacen")]
     public virtual Almacen? Almacen { get; set; }
-
+    [JsonIgnore]
     public virtual ICollection<DetIngresoSalida> DetIngresoSalida { get; }
 
-    [ForeignKey("cod_proveedor")]
+    
     public virtual Proveedor Proveedor { get; set; }
 
-    [ForeignKey("cod_tipo_transaccion")]
+    
     public virtual TipoTransaccion TipoTransaccion { get; set; }
 }
