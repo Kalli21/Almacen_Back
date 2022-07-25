@@ -15,7 +15,7 @@ namespace Almacen_Back.Models
         public byte[] PasswordHash { get; set; }
         public byte[] PasswordSalt { get; set; }
         [ForeignKey("cod_clave")]
-        public virtual GrupoClave GrupoClave { get; set; }
+        public virtual GrupoClave? GrupoClave { get; set; }
 
     }
 }

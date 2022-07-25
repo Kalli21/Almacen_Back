@@ -642,8 +642,7 @@ namespace Almacen_Back.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_AL_USER_cod_clave",
                 table: "AL_USER",
-                column: "cod_clave",
-                unique: true);
+                column: "cod_clave");
 
             migrationBuilder.CreateIndex(
                 name: "IX_PedidoSalida_Salidaid_salida",

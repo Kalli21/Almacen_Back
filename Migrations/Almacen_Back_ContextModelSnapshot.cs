@@ -723,8 +723,7 @@ namespace Almacen_Back.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("cod_clave")
-                        .IsUnique();
+                    b.HasIndex("cod_clave");
 
                     b.ToTable("AL_USER");
                 });
@@ -974,8 +973,8 @@ namespace Almacen_Back.Migrations
             modelBuilder.Entity("Almacen_Back.Models.User", b =>
                 {
                     b.HasOne("Almacen_Back.Models.GrupoClave", "GrupoClave")
-                        .WithOne("user")
-                        .HasForeignKey("Almacen_Back.Models.User", "cod_clave")
+                        .WithMany()
+                        .HasForeignKey("cod_clave")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
@@ -1042,9 +1041,6 @@ namespace Almacen_Back.Migrations
                     b.Navigation("Pedido");
 
                     b.Navigation("Salida");
-
-                    b.Navigation("user")
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("Almacen_Back.Models.Ingreso", b =>

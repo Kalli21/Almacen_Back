@@ -7,7 +7,7 @@
         public string? Token { get; set;}
         public bool activo { get; set; }
         public long cod_clave { get; set; } 
-        public virtual GrupoClaveDTO GrupoClave { get; set; }
+        public virtual GrupoClave? GrupoClave { get; set; }
 
            
     }

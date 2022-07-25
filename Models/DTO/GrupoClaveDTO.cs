@@ -33,5 +33,5 @@ public class GrupoClaveDTO
     
     public virtual ICollection<Salida> Salida { get; }
     
-    public virtual UserDTO user { get; set; }
+    public virtual User? user { get; set; }
 }

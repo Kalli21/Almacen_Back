@@ -26,7 +26,7 @@ public class GrupoClave
     public string apoya_a { get; set; }
     public string ppp { get; set; }
     [ForeignKey("Cod_grupo")]
-    public virtual GrupoAcceso GrupoAcceso { get; set; }
+    public virtual GrupoAcceso? GrupoAcceso { get; set; }
     [JsonIgnore]
     public virtual ICollection<Ingreso> Ingreso { get; }
     [JsonIgnore]
@@ -34,5 +34,5 @@ public class GrupoClave
     [JsonIgnore]
     public virtual ICollection<Salida> Salida { get; }
     [JsonIgnore]
-    public virtual User user { get; set; } 
+    public virtual User? user { get; } 
 }

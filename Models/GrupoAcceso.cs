@@ -16,5 +16,6 @@ public class GrupoAcceso
     [Key]
     public string Cod_grupo { get; set; }
     public string Descripcion { get; set; }
+    [JsonIgnore]
     public virtual ICollection<GrupoClave> GrupoClave { get; }
 }
