@@ -21,7 +21,6 @@ public class GrupoClaveDTO
     public string Cod_funcionario { get; set; }
     
     public string Cod_grupo { get; set; }
-    
     public string clave { get; set; }
     public string apoya_a { get; set; }
     public string ppp { get; set; }
@@ -33,5 +32,6 @@ public class GrupoClaveDTO
     public virtual ICollection<Pedido> Pedido { get; }
     
     public virtual ICollection<Salida> Salida { get; }
-
+    
+    public virtual UserDTO user { get; set; }
 }

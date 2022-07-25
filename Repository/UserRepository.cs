@@ -43,29 +43,34 @@ namespace Almacen_Back.Repository
             }
         }
 
-        public async Task<string> Register(UserDTO userDTO)
+        public async Task<UserDTO> Register(UserDTO userDTO)
         {
             try
             {
-                User user = _mapper.Map<UserDTO, User>(userDTO);  
+                User user = _mapper.Map<UserDTO, User>(userDTO);
                 if (await UserExiste(user.UserName))
                 {
-                    return "existe";
+                    userDTO.Token = "existe";
+                    return userDTO; 
                 }
 
                 CrearPasswordHash(userDTO.Password, out byte[] passwordHash, out byte[] passwordSalt);
 
                 user.PasswordHash = passwordHash;
                 user.PasswordSalt = passwordSalt;
+                user.activo = true;
 
                 await _db.User.AddAsync(user);
                 await _db.SaveChangesAsync();
-                return CrearToken(user);
+                userDTO = _mapper.Map<User, UserDTO>(user);
+                userDTO.Token =  CrearToken(user);
+
+                return userDTO;
             }
             catch (Exception)
             {
-
-                return "error";
+                userDTO.Token = "error";
+                return userDTO;
             }
         }
 
@@ -130,5 +135,46 @@ namespace Almacen_Back.Repository
             return tokenHandler.WriteToken(token);
         }
 
+        public async Task<ICollection<UserDTO>> GetUsers()
+        {
+            ICollection<User> users = await _db.User.ToListAsync();
+            return _mapper.Map<ICollection<UserDTO>>(users);
+        
+        }
+
+        public async Task<UserDTO> GetUserById(string username)
+        {
+            User user = await _db.User.Where(i => i.UserName == username).FirstOrDefaultAsync();
+            return _mapper.Map<UserDTO>(user);
+        }
+
+        public async Task<UserDTO> UpdateUser(UserDTO userDTO)
+        {
+            User user = _mapper.Map<UserDTO, User>(userDTO);
+            User auxU = await _db.User.Where(i => i.UserName == userDTO.UserName).FirstOrDefaultAsync();
+            user.Id = auxU.Id;        
+            _db.User.Update(user);
+            await _db.SaveChangesAsync();
+            return _mapper.Map<User, UserDTO >(user);
+        
+        }
+
+        public async Task<bool> DeleteUser(string username)
+        {
+            try
+            {
+                User User = await _db.User.Where(i => i.UserName == username).FirstOrDefaultAsync();
+                if (User == null)
+                    return false;
+                _db.User.Remove(User);
+                await _db.SaveChangesAsync();
+
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
     }
 }

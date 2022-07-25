@@ -16,9 +16,9 @@ public class Pedido
 
     [Key]
     public long id_pedido { get; set; }
-    [ForeignKey("cod_clave")]
+    
     public long cod_clave { get; set; }
-    [ForeignKey("cod_almacen")]
+    
     public string cod_almacen { get; set; }
     [Required]
     public System.DateTime fecha_pedido { get; set; }
@@ -44,12 +44,12 @@ public class Pedido
     public bool atendido { get; set; }
     public string pedido_por { get; set; }
 
-    
+    [ForeignKey("cod_almacen")]
     public virtual Almacen Almacen { get; set; }
     [JsonIgnore]
     public virtual ICollection<DetPedido> DetPedido { get; }
 
-    
+    [ForeignKey("cod_clave")]
     public virtual GrupoClave GrupoClave { get; set; }
     [JsonIgnore]
     public virtual ICollection<Salida> Salida { get; }

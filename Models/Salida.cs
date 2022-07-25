@@ -15,9 +15,9 @@ public class Salida
     }
     [Key]
     public long id_salida { get; set; }
-    [ForeignKey("cod_clave")]
+    
     public long cod_clave { get; set; }
-    [ForeignKey("cod_almacen")]
+    
     public string cod_almacen { get; set; }
     public string num_guia_salida { get; set; }
     [Required]
@@ -30,12 +30,12 @@ public class Salida
     public System.DateTime Fecha_salida { get; set; }
     public string Obs { get; set; }
 
-    
+    [ForeignKey("cod_almacen")]
     public virtual Almacen Almacen { get; set; }
     [JsonIgnore]
     public virtual ICollection<DetSalida> DetSalida { get; }
 
-    
+    [ForeignKey("cod_clave")]
     public virtual GrupoClave GrupoClave { get; set; }
     [JsonIgnore]
     public virtual ICollection<Pedido> Pedido { get; }

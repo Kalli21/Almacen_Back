@@ -31,6 +31,36 @@ namespace Almacen_Back.Controllers
             return await _userService.Login(user);   
         }
 
+         // GET: api/User
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<UserDTO>>> GetUsers()
+        {
+            return await _userService.GetUsers();
+        }
+
+        // GET: api/User/5
+        [HttpGet("{id}")]
+        public async Task<ActionResult<UserDTO>> GetUser(string id)
+        {
+            return await _userService.GetUserById(id);
+        }
+
+        // PUT: api/User/5
+        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [HttpPut("{id}")]
+        public async Task<IActionResult> PutUser(string id, UserDTO UserDTO)
+        {
+            return await _userService.UpdateUser(id,UserDTO);
+        }
+
+
+        // DELETE: api/User/5
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteUser(string id)
+        {
+            return await _userService.DeleteUser(id);
+        }
+
     }
 
 }

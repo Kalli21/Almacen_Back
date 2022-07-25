@@ -7,6 +7,11 @@ namespace Almacen_Back.Services.Interfaces
     {
         Task<IActionResult> Register(UserDTO user);
         Task<IActionResult> Login(UserDTO user);
+
+        Task<ActionResult<IEnumerable<UserDTO>>> GetUsers();
+        Task<ActionResult<UserDTO>> GetUserById(string username);
+        Task<IActionResult> UpdateUser(string username , UserDTO UserDTO);
+        Task<IActionResult> DeleteUser(string username);
         
     }
 }

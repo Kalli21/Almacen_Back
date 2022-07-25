@@ -23,10 +23,10 @@ public class Articulo
 
     [Key]
     public long cod_articulo { get; set; }
-    [ForeignKey("cod_und_medida")]
+    
     public string cod_und_medida { get; set; }
 
-    [ForeignKey("Cod_categoria")]
+    
     public string Cod_categoria { get; set; }
     [Required]
     public string nom_articulo { get; set; }
@@ -41,8 +41,10 @@ public class Articulo
     public Nullable<double> precio_ultimo_ref { get; set; }
     public string? Obs { get; set; }
     public Nullable<bool> visible { get; set; }
-
+    
+    [ForeignKey("Cod_categoria")]
     public virtual Categoria Categoria { get; set; }
+    [ForeignKey("cod_und_medida")]
     public virtual UnidadMedida UnidadMedida { get; set ;}
     
     [JsonIgnore]

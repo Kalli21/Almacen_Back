@@ -33,7 +33,7 @@ namespace Almacen_Back.Controllers
         }
 
         // PUT: api/Categoria/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        // To protect from overposting attacks, see c
         [HttpPut("{id}")]
         public async Task<IActionResult> PutCategoria(string id, CategoriaDTO categoriaDTO)
         {
