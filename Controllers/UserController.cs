@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Almacen_Back.Models.DTO;
 using Almacen_Back.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -15,9 +16,7 @@ namespace Almacen_Back.Controllers
         public UserController(IUserService userService)
         {
             _userService = userService;
-        }
-        
-        
+        }             
 
         [HttpPost("Register")]
         public async Task<IActionResult> Register(UserDTO user)
@@ -33,6 +32,7 @@ namespace Almacen_Back.Controllers
 
          // GET: api/User
         [HttpGet]
+        [Authorize]
         public async Task<ActionResult<IEnumerable<UserDTO>>> GetUsers()
         {
             return await _userService.GetUsers();
@@ -40,6 +40,7 @@ namespace Almacen_Back.Controllers
 
         // GET: api/User/5
         [HttpGet("{id}")]
+        [Authorize]
         public async Task<ActionResult<UserDTO>> GetUser(string id)
         {
             return await _userService.GetUserById(id);
@@ -48,6 +49,7 @@ namespace Almacen_Back.Controllers
         // PUT: api/User/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
+        [Authorize]
         public async Task<IActionResult> PutUser(string id, UserDTO UserDTO)
         {
             return await _userService.UpdateUser(id,UserDTO);
@@ -56,6 +58,7 @@ namespace Almacen_Back.Controllers
 
         // DELETE: api/User/5
         [HttpDelete("{id}")]
+        [Authorize]
         public async Task<IActionResult> DeleteUser(string id)
         {
             return await _userService.DeleteUser(id);

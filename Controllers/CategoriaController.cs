@@ -1,12 +1,14 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Almacen_Back.Models.DTO;
 using Almacen_Back.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 
 
 namespace Almacen_Back.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class CategoriaController : ControllerBase
     {
         private readonly ICategoriaService _categoriaService;
