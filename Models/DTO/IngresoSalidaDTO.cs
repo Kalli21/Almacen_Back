@@ -35,7 +35,7 @@ public class IngresoSalidaDTO
     [ForeignKey("cod_almacen")]
     public virtual Almacen? Almacen { get; set; }
     
-    public virtual ICollection<DetIngresoSalida> DetIngresoSalida { get; }
+    public virtual ICollection<DetIngresoSalida> DetIngresoSalida { get; set; }
 
     [ForeignKey("cod_proveedor")]
     public virtual Proveedor? Proveedor { get; set; }

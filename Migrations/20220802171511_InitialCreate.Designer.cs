@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Almacen_Back.Migrations
 {
     [DbContext(typeof(Almacen_Back_Context))]
-    [Migration("20220801215807_InitialCreate")]
+    [Migration("20220802171511_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

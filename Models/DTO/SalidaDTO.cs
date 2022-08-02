@@ -30,9 +30,9 @@ public class SalidaDTO
 
     public virtual Almacen? Almacen { get; set; }
 
-    public virtual ICollection<DetSalida> DetSalida { get; }
+    public virtual ICollection<DetSalida> DetSalida { get; set; }
 
     public virtual GrupoClave? GrupoClave { get; set; }
 
-    public virtual ICollection<Pedido> Pedido { get; }
+    public virtual ICollection<Pedido> Pedido { get; set; }
 }

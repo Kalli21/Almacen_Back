@@ -31,7 +31,7 @@ public class Ingreso
     [ForeignKey("cod_almacen")]
     public virtual Almacen? Almacen { get; set; }
     [JsonIgnore]
-    public virtual ICollection<DetIngreso> DetIngreso { get; }
+    public virtual ICollection<DetIngreso> DetIngreso { get; set; }
     [ForeignKey("cod_clave")]
     public virtual GrupoClave? GrupoClave { get; set; }
     [ForeignKey("cod_proveedor")]

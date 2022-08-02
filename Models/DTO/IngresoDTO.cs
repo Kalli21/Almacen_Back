@@ -29,7 +29,7 @@ public class IngresoDTO
 
     public virtual Almacen? Almacen { get; set; }
     
-    public virtual ICollection<DetIngreso> DetIngreso { get; }
+    public virtual ICollection<DetIngreso> DetIngreso { get; set; }
 
     public virtual GrupoClave? GrupoClave { get; set; }
     public virtual Proveedor? Proveedor { get; set; }
