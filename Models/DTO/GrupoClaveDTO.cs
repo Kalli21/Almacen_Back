@@ -18,14 +18,14 @@ public class GrupoClaveDTO
     
     public long cod_clave { get; set; }
     
-    public string Cod_funcionario { get; set; }
+    public string? Cod_funcionario { get; set; }
     
-    public string Cod_grupo { get; set; }
-    public string clave { get; set; }
-    public string apoya_a { get; set; }
-    public string ppp { get; set; }
+    public string? Cod_grupo { get; set; }
+    public string? clave { get; set; }
+    public string? apoya_a { get; set; }
+    public string? ppp { get; set; }
 
-    public virtual GrupoAcceso GrupoAcceso { get; set; }
+    public virtual GrupoAcceso? GrupoAcceso { get; set; }
     
     public virtual ICollection<Ingreso> Ingreso { get; }
     

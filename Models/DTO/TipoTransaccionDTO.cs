@@ -12,9 +12,9 @@ public class TipoTransaccionDTO
     }
 
     
-    public string cod_tipo_transaccion { get; set; }
+    public string? cod_tipo_transaccion { get; set; }
     
-    public string descripción { get; set; }
+    public string? descripción { get; set; }
     
     public bool ingreso { get; set; }
 

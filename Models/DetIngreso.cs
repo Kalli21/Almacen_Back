@@ -16,7 +16,7 @@ public class DetIngreso
     public Nullable<double> prec_unit_ingreso { get; set; }
     public string? Obs { get; set; }
     [ForeignKey("cod_articulo")]
-    public virtual Articulo Articulo { get; set; }
+    public virtual Articulo? Articulo { get; set; }
     [ForeignKey("id_ingreso")]
-    public virtual Ingreso Ingreso { get; set; }
+    public virtual Ingreso? Ingreso { get; set; }
 }

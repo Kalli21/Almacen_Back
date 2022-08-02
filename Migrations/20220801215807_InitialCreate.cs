@@ -30,7 +30,7 @@ namespace Almacen_Back.Migrations
                 {
                     Cod_categoria = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     nom_categoria = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    des_categoria = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    des_categoria = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Obs = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
@@ -43,7 +43,7 @@ namespace Almacen_Back.Migrations
                 columns: table => new
                 {
                     Cod_grupo = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Descripcion = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Descripcion = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -69,7 +69,7 @@ namespace Almacen_Back.Migrations
                 {
                     cod_und_medida = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     des_und_medida = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Obs = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Obs = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -82,22 +82,22 @@ namespace Almacen_Back.Migrations
                 {
                     cod_proveedor = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     razon_social = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Cod_categoria = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    direccion = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ciudad = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    pais = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    telefono = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    fax = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    web = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Obs = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    contacto = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    beneficiario = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Cod_categoria = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    direccion = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ciudad = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    pais = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    telefono = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    fax = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    web = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Obs = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    contacto = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    beneficiario = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     activo = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    RUC = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    codigoPostal = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Posicion = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    titulo = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    saludo = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    RUC = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    codigoPostal = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Posicion = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    titulo = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    saludo = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -117,10 +117,10 @@ namespace Almacen_Back.Migrations
                     cod_clave = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Cod_funcionario = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Cod_grupo = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Cod_grupo = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     clave = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    apoya_a = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ppp = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    apoya_a = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ppp = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -139,10 +139,10 @@ namespace Almacen_Back.Migrations
                 {
                     cod_articulo = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    cod_und_medida = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Cod_categoria = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    cod_und_medida = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    Cod_categoria = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     nom_articulo = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    des_articulo = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    des_articulo = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     perecible = table.Column<bool>(type: "bit", nullable: false),
                     ubicacion = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     estado = table.Column<bool>(type: "bit", nullable: false),
@@ -177,12 +177,12 @@ namespace Almacen_Back.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     cod_clave = table.Column<long>(type: "bigint", nullable: false),
                     ingreso = table.Column<bool>(type: "bit", nullable: false),
-                    cod_tipo_transaccion = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    num_guia = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    cod_tipo_transaccion = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    num_guia = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     fecha_transaccion = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    cod_proveedor = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    cod_almacen = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Obs = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    cod_proveedor = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    cod_almacen = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    Obs = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     procesado = table.Column<bool>(type: "bit", nullable: false),
                     pendiente = table.Column<bool>(type: "bit", nullable: false),
                     fecha_proceso = table.Column<DateTime>(type: "datetime2", nullable: true)
@@ -217,12 +217,12 @@ namespace Almacen_Back.Migrations
                     id_ingreso = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     cod_clave = table.Column<long>(type: "bigint", nullable: false),
-                    cod_proveedor = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    cod_almacen = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Num_guia_ingreso = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    cod_proveedor = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    cod_almacen = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    Num_guia_ingreso = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Importacion = table.Column<bool>(type: "bit", nullable: false),
                     Fecha_ingreso = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Obs = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Obs = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -254,22 +254,22 @@ namespace Almacen_Back.Migrations
                     id_pedido = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     cod_clave = table.Column<long>(type: "bigint", nullable: false),
-                    cod_almacen = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    cod_almacen = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     fecha_pedido = table.Column<DateTime>(type: "datetime2", nullable: false),
                     fecha_entrega = table.Column<DateTime>(type: "datetime2", nullable: true),
                     fecha_despacho = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    piso_destino = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    piso_destino = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     proc_destino = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     prog_destino = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    proy_destino = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    motivo_solicitud = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    proy_destino = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    motivo_solicitud = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     autorizado = table.Column<bool>(type: "bit", nullable: false),
                     urgente = table.Column<bool>(type: "bit", nullable: false),
                     recepcionado = table.Column<bool>(type: "bit", nullable: false),
                     enviado = table.Column<bool>(type: "bit", nullable: false),
-                    Obs = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Obs = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     atendido = table.Column<bool>(type: "bit", nullable: false),
-                    pedido_por = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    pedido_por = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -295,13 +295,13 @@ namespace Almacen_Back.Migrations
                     id_salida = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     cod_clave = table.Column<long>(type: "bigint", nullable: false),
-                    cod_almacen = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    num_guia_salida = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    cod_almacen = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    num_guia_salida = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     despacho_pedido = table.Column<bool>(type: "bit", nullable: false),
                     donacion = table.Column<bool>(type: "bit", nullable: false),
                     venta = table.Column<bool>(type: "bit", nullable: false),
                     Fecha_salida = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Obs = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Obs = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -328,9 +328,9 @@ namespace Almacen_Back.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     cod_clave = table.Column<long>(type: "bigint", nullable: false),
                     activo = table.Column<bool>(type: "bit", nullable: false),
-                    UserName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    PasswordHash = table.Column<byte[]>(type: "varbinary(max)", nullable: false),
-                    PasswordSalt = table.Column<byte[]>(type: "varbinary(max)", nullable: false)
+                    UserName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PasswordHash = table.Column<byte[]>(type: "varbinary(max)", nullable: true),
+                    PasswordSalt = table.Column<byte[]>(type: "varbinary(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -354,7 +354,7 @@ namespace Almacen_Back.Migrations
                     cant_fisica = table.Column<double>(type: "float", nullable: true),
                     cant_real = table.Column<double>(type: "float", nullable: true),
                     cant_minima_reposicion = table.Column<double>(type: "float", nullable: true),
-                    Obs = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Obs = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -383,7 +383,7 @@ namespace Almacen_Back.Migrations
                     cod_articulo = table.Column<long>(type: "bigint", nullable: false),
                     cant_articulo = table.Column<double>(type: "float", nullable: true),
                     costo_unitario = table.Column<double>(type: "float", nullable: true),
-                    Obs = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Obs = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     fecha_vencimiento = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
@@ -447,7 +447,7 @@ namespace Almacen_Back.Migrations
                     costo_cant_entrega = table.Column<double>(type: "float", nullable: true),
                     pedido_para_compra = table.Column<bool>(type: "bit", nullable: false),
                     autoriza_compra = table.Column<bool>(type: "bit", nullable: false),
-                    Obs = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Obs = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {

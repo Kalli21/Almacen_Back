@@ -23,7 +23,7 @@ public class Almacen
     }
     
     [Key]
-    public string cod_almacen { get; set; }
+    public string? cod_almacen { get; set; }
 
     [Required]
     public string? nom_almacen { get; set; }

@@ -22,23 +22,28 @@ namespace Almacen_Back.Repository
             _mapper = mapper;
         }
 
-        public async Task<string> Login(UserDTO userDTO)
+        public async Task<UserDTO> Login(UserDTO userDTO)
         {
-            var user = await _db.User.FirstOrDefaultAsync(x => x.UserName.ToLower().Equals(userDTO.UserName.ToLower()));
-
+            User user = await _db.User.Include(x => x.GrupoClave.GrupoAcceso).FirstOrDefaultAsync(x => x.UserName.ToLower().Equals(userDTO.UserName.ToLower()));
+    
             if (user == null)
             {
-                return "nouser";
+                userDTO.Token = "nouser";
+                return userDTO;
             }
             else
             {
                 if (!VerificarPasswordHash(userDTO.Password, user.PasswordHash, user.PasswordSalt))
                 {
-                    return "wrongpassword";
+                    userDTO.Token = "wrongpassword";
+                    return userDTO;
                 }
                 else
                 {
-                    return CrearToken(user);
+                    
+                    userDTO = _mapper.Map<User, UserDTO>(user);
+                    userDTO.Token = CrearToken(user);
+                    return userDTO;
                 }
             }
         }

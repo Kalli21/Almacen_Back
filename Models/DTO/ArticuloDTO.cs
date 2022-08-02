@@ -21,11 +21,11 @@ public class ArticuloDTO
     }
 
     public long cod_articulo { get; set; }
-    public string cod_und_medida { get; set; }
+    public string? cod_und_medida { get; set; }
 
-    public string Cod_categoria { get; set; }
-    public string nom_articulo { get; set; }
-    public string des_articulo { get; set; }
+    public string? Cod_categoria { get; set; }
+    public string? nom_articulo { get; set; }
+    public string? des_articulo { get; set; }
     public bool perecible { get; set; }
     public string ubicacion { get; set; }
     public bool estado { get; set; }
@@ -34,8 +34,8 @@ public class ArticuloDTO
     public Nullable<double> precio_ultimo_ref { get; set; }
     public string? Obs { get; set; }
     public Nullable<bool> visible { get; set; }
-    public virtual Categoria Categoria { get; set; }
-    public virtual UnidadMedida UnidadMedida { get; set; }
+    public virtual Categoria? Categoria { get; set; }
+    public virtual UnidadMedida? UnidadMedida { get; set; }
     
     public virtual ICollection<ControlStock> ControlStock { get; }
     

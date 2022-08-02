@@ -17,7 +17,7 @@ public class DetSalidaDTO
     public string? Obs { get; set; }
 
 
-    public virtual Articulo Articulo { get; set; }
+    public virtual Articulo? Articulo { get; set; }
 
-    public virtual Salida Salida { get; set; }
+    public virtual Salida? Salida { get; set; }
 }

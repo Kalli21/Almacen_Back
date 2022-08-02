@@ -24,13 +24,13 @@ public class Articulo
     [Key]
     public long cod_articulo { get; set; }
     
-    public string cod_und_medida { get; set; }
+    public string? cod_und_medida { get; set; }
 
     
-    public string Cod_categoria { get; set; }
+    public string? Cod_categoria { get; set; }
     [Required]
-    public string nom_articulo { get; set; }
-    public string des_articulo { get; set; }
+    public string? nom_articulo { get; set; }
+    public string? des_articulo { get; set; }
     [Required]
     public bool perecible { get; set; }
     public string ubicacion { get; set; }
@@ -43,9 +43,9 @@ public class Articulo
     public Nullable<bool> visible { get; set; }
     
     [ForeignKey("Cod_categoria")]
-    public virtual Categoria Categoria { get; set; }
+    public virtual Categoria? Categoria { get; set; }
     [ForeignKey("cod_und_medida")]
-    public virtual UnidadMedida UnidadMedida { get; set ;}
+    public virtual UnidadMedida? UnidadMedida { get; set ;}
     
     [JsonIgnore]
     public virtual ICollection<ControlStock> ControlStock { get; }

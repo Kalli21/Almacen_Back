@@ -19,13 +19,13 @@ public class IngresoSalidaDTO
     
     public bool ingreso { get; set; }
     
-    public string cod_tipo_transaccion { get; set; }
-    public string num_guia { get; set; }
+    public string? cod_tipo_transaccion { get; set; }
+    public string? num_guia { get; set; }
     public Nullable<System.DateTime> fecha_transaccion { get; set; }
-    public string cod_proveedor { get; set; }
+    public string? cod_proveedor { get; set; }
     
-    public string cod_almacen { get; set; }
-    public string Obs { get; set; }
+    public string? cod_almacen { get; set; }
+    public string? Obs { get; set; }
     
     public bool procesado { get; set; }
     
@@ -38,8 +38,8 @@ public class IngresoSalidaDTO
     public virtual ICollection<DetIngresoSalida> DetIngresoSalida { get; }
 
     [ForeignKey("cod_proveedor")]
-    public virtual Proveedor Proveedor { get; set; }
+    public virtual Proveedor? Proveedor { get; set; }
 
     [ForeignKey("cod_tipo_transaccion")]
-    public virtual TipoTransaccion TipoTransaccion { get; set; }
+    public virtual TipoTransaccion? TipoTransaccion { get; set; }
 }

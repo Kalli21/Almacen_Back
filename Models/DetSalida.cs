@@ -17,7 +17,7 @@ public class DetSalida
     public Nullable<double> precio_unit_salida { get; set; }
     public string? Obs { get; set; }
     [ForeignKey("cod_articulo")]
-    public virtual Articulo Articulo { get; set; }
+    public virtual Articulo? Articulo { get; set; }
     [ForeignKey("id_salida")]
-    public virtual Salida Salida { get; set; }
+    public virtual Salida? Salida { get; set; }
 }

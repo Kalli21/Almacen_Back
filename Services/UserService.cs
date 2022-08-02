@@ -19,16 +19,16 @@ namespace Almacen_Back.Services
 
         public async Task<IActionResult> Login(UserDTO user)
         {
-            var respuesta = await _userRepository.Login(user);
+            UserDTO model = await _userRepository.Login(user);
 
-            if (respuesta=="nouser")
+            if (model.Token=="nouser")
             {
                 _response.IsSuccess = false;
                 _response.DisplayMessage = "Usuario no existe";
                 return new BadRequestObjectResult(_response);
             }
 
-            if (respuesta == "wrongpassword")
+            if (model.Token == "wrongpassword")
             {
                 _response.IsSuccess = false;
                 _response.DisplayMessage = "Password incorrecto";
@@ -38,9 +38,9 @@ namespace Almacen_Back.Services
             //_response.Result = respuesta;
             _response.DisplayMessage = "Usuario conectado";
             
-            user.Token = respuesta;
-            user.Password = "";
-            _response.Result = user;
+            // user.Token = respuesta;
+            model.Password = "";
+            _response.Result = model;
 
             return new OkObjectResult(_response);
 

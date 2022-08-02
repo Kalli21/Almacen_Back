@@ -17,9 +17,9 @@ public class CategoriaDTO
     }
 
     
-    public string Cod_categoria { get; set; }
+    public string? Cod_categoria { get; set; }
     
-    public string nom_categoria { get; set; }
+    public string? nom_categoria { get; set; }
     public string des_categoria { get; set; }
     public string Obs { get; set; }
 

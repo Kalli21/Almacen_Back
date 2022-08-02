@@ -56,7 +56,6 @@ namespace Almacen_Back.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("cod_articulo"), 1L, 1);
 
                     b.Property<string>("Cod_categoria")
-                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<byte[]>("Imagen")
@@ -66,11 +65,9 @@ namespace Almacen_Back.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("cod_und_medida")
-                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("des_articulo")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("estado")
@@ -114,7 +111,6 @@ namespace Almacen_Back.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("des_categoria")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("nom_categoria")
@@ -135,7 +131,6 @@ namespace Almacen_Back.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
 
                     b.Property<string>("Obs")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<double?>("cant_fisica")
@@ -203,7 +198,6 @@ namespace Almacen_Back.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
 
                     b.Property<string>("Obs")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<double?>("cant_articulo")
@@ -239,7 +233,6 @@ namespace Almacen_Back.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
 
                     b.Property<string>("Obs")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("autoriza_compra")
@@ -316,7 +309,6 @@ namespace Almacen_Back.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Descripcion")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Cod_grupo");
@@ -337,11 +329,9 @@ namespace Almacen_Back.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Cod_grupo")
-                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("apoya_a")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("clave")
@@ -349,7 +339,6 @@ namespace Almacen_Back.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ppp")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("cod_clave");
@@ -374,22 +363,18 @@ namespace Almacen_Back.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("Num_guia_ingreso")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Obs")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("cod_almacen")
-                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<long>("cod_clave")
                         .HasColumnType("bigint");
 
                     b.Property<string>("cod_proveedor")
-                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("id_ingreso");
@@ -412,22 +397,18 @@ namespace Almacen_Back.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("id_transaccion"), 1L, 1);
 
                     b.Property<string>("Obs")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("cod_almacen")
-                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<long>("cod_clave")
                         .HasColumnType("bigint");
 
                     b.Property<string>("cod_proveedor")
-                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("cod_tipo_transaccion")
-                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<DateTime?>("fecha_proceso")
@@ -440,7 +421,6 @@ namespace Almacen_Back.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("num_guia")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("pendiente")
@@ -469,7 +449,6 @@ namespace Almacen_Back.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("id_pedido"), 1L, 1);
 
                     b.Property<string>("Obs")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("atendido")
@@ -479,7 +458,6 @@ namespace Almacen_Back.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("cod_almacen")
-                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<long>("cod_clave")
@@ -498,15 +476,12 @@ namespace Almacen_Back.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("motivo_solicitud")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("pedido_por")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("piso_destino")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("proc_destino")
@@ -518,7 +493,6 @@ namespace Almacen_Back.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("proy_destino")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("recepcionado")
@@ -542,19 +516,15 @@ namespace Almacen_Back.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Cod_categoria")
-                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Obs")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Posicion")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("RUC")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("activo")
@@ -562,31 +532,24 @@ namespace Almacen_Back.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("beneficiario")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ciudad")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("codigoPostal")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("contacto")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("direccion")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("fax")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("pais")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("razon_social")
@@ -594,19 +557,15 @@ namespace Almacen_Back.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("saludo")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("telefono")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("titulo")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("web")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("cod_proveedor");
@@ -628,11 +587,9 @@ namespace Almacen_Back.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Obs")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("cod_almacen")
-                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<long>("cod_clave")
@@ -645,7 +602,6 @@ namespace Almacen_Back.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("num_guia_salida")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("venta")
@@ -683,7 +639,6 @@ namespace Almacen_Back.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Obs")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("des_und_medida")
@@ -704,15 +659,12 @@ namespace Almacen_Back.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<byte[]>("PasswordHash")
-                        .IsRequired()
                         .HasColumnType("varbinary(max)");
 
                     b.Property<byte[]>("PasswordSalt")
-                        .IsRequired()
                         .HasColumnType("varbinary(max)");
 
                     b.Property<string>("UserName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("activo")
@@ -748,14 +700,12 @@ namespace Almacen_Back.Migrations
                     b.HasOne("Almacen_Back.Models.Categoria", "Categoria")
                         .WithMany("Articulo")
                         .HasForeignKey("Cod_categoria")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("Almacen_Back.Models.UnidadMedida", "UnidadMedida")
                         .WithMany("Articulo")
                         .HasForeignKey("cod_und_medida")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.Navigation("Categoria");
 
@@ -861,8 +811,7 @@ namespace Almacen_Back.Migrations
                     b.HasOne("Almacen_Back.Models.GrupoAcceso", "GrupoAcceso")
                         .WithMany("GrupoClave")
                         .HasForeignKey("Cod_grupo")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.Navigation("GrupoAcceso");
                 });
@@ -872,8 +821,7 @@ namespace Almacen_Back.Migrations
                     b.HasOne("Almacen_Back.Models.Almacen", "Almacen")
                         .WithMany("Ingreso")
                         .HasForeignKey("cod_almacen")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("Almacen_Back.Models.GrupoClave", "GrupoClave")
                         .WithMany("Ingreso")
@@ -884,8 +832,7 @@ namespace Almacen_Back.Migrations
                     b.HasOne("Almacen_Back.Models.Proveedor", "Proveedor")
                         .WithMany("Ingreso")
                         .HasForeignKey("cod_proveedor")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.Navigation("Almacen");
 
@@ -899,20 +846,17 @@ namespace Almacen_Back.Migrations
                     b.HasOne("Almacen_Back.Models.Almacen", "Almacen")
                         .WithMany("IngresoSalida")
                         .HasForeignKey("cod_almacen")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("Almacen_Back.Models.Proveedor", "Proveedor")
                         .WithMany("IngresoSalida")
                         .HasForeignKey("cod_proveedor")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("Almacen_Back.Models.TipoTransaccion", "TipoTransaccion")
                         .WithMany("IngresoSalida")
                         .HasForeignKey("cod_tipo_transaccion")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.Navigation("Almacen");
 
@@ -926,8 +870,7 @@ namespace Almacen_Back.Migrations
                     b.HasOne("Almacen_Back.Models.Almacen", "Almacen")
                         .WithMany("Pedido")
                         .HasForeignKey("cod_almacen")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("Almacen_Back.Models.GrupoClave", "GrupoClave")
                         .WithMany("Pedido")
@@ -945,8 +888,7 @@ namespace Almacen_Back.Migrations
                     b.HasOne("Almacen_Back.Models.Categoria", "Categoria")
                         .WithMany("Proveedor")
                         .HasForeignKey("Cod_categoria")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.Navigation("Categoria");
                 });
@@ -956,8 +898,7 @@ namespace Almacen_Back.Migrations
                     b.HasOne("Almacen_Back.Models.Almacen", "Almacen")
                         .WithMany("Salida")
                         .HasForeignKey("cod_almacen")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("Almacen_Back.Models.GrupoClave", "GrupoClave")
                         .WithMany("Salida")

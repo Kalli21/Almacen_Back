@@ -18,7 +18,7 @@ namespace Almacen_Back.Models.DTO
 
         }
 
-        public string cod_almacen { get; set; }
+        public string? cod_almacen { get; set; }
 
 
         public string? nom_almacen { get; set; }

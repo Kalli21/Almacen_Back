@@ -15,11 +15,11 @@ public class ControlStock
     public Nullable<double> cant_fisica { get; set; }
     public Nullable<double> cant_real { get; set; }
     public Nullable<double> cant_minima_reposicion { get; set; }
-    public string Obs { get; set; }
+    public string? Obs { get; set; }
     [ForeignKey("cod_almacen")]
     [JsonIgnore]
-    public virtual Almacen Almacen { get; set; }
+    public virtual Almacen? Almacen { get; set; }
     [ForeignKey("cod_articulo")]
     [JsonIgnore]    
-    public virtual Articulo Articulo { get; set; }
+    public virtual Articulo? Articulo { get; set; }
 }

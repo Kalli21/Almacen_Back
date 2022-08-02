@@ -13,8 +13,8 @@ public class GrupoAccesoDTO
     }
 
     
-    public string Cod_grupo { get; set; }
-    public string Descripcion { get; set; }
+    public string? Cod_grupo { get; set; }
+    public string? Descripcion { get; set; }
     
      public virtual ICollection<GrupoClave> GrupoClave { get; }
 }

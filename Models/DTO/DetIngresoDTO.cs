@@ -15,6 +15,6 @@ public class DetIngresoDTO
     public Nullable<double> prec_unit_ingreso { get; set; }
     public string? Obs { get; set; }
 
-    public virtual Articulo Articulo { get; set; }
-    public virtual Ingreso Ingreso { get; set; }
+    public virtual Articulo? Articulo { get; set; }
+    public virtual Ingreso? Ingreso { get; set; }
 }

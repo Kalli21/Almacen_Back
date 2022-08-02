@@ -18,13 +18,13 @@ public class GrupoClave
     [Key]
     public long cod_clave { get; set; }
     [Required]
-    public string Cod_funcionario { get; set; }
+    public string? Cod_funcionario { get; set; }
     
-    public string Cod_grupo { get; set; }
+    public string? Cod_grupo { get; set; }
     [Required]
-    public string clave { get; set; }
-    public string apoya_a { get; set; }
-    public string ppp { get; set; }
+    public string? clave { get; set; }
+    public string? apoya_a { get; set; }
+    public string? ppp { get; set; }
     [ForeignKey("Cod_grupo")]
     public virtual GrupoAcceso? GrupoAcceso { get; set; }
     [JsonIgnore]

@@ -5,7 +5,7 @@ namespace Almacen_Back.Repository.Interfaces
     public interface IUserRepository
     {
         Task<UserDTO> Register(UserDTO userDTO);
-        Task<string> Login(UserDTO userDTO);
+        Task<UserDTO> Login(UserDTO userDTO);
         Task<bool> UserExiste(string username);
 
         Task<ICollection<UserDTO>> GetUsers();

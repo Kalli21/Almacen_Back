@@ -20,7 +20,7 @@ public class DetPedidoDTO
     public bool pedido_para_compra { get; set; }
     
     public bool autoriza_compra { get; set; }
-    public string Obs { get; set; }
+    public string? Obs { get; set; }
 
     public virtual Articulo? Articulo { get; set; }
     public virtual Pedido? Pedido { get; set; }
