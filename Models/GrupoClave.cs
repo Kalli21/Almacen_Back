@@ -10,9 +10,7 @@ public class GrupoClave
 
     public GrupoClave()
     {
-        this.Ingreso = new HashSet<Ingreso>();
         this.Pedido = new HashSet<Pedido>();
-        this.Salida = new HashSet<Salida>();
     }
 
     [Key]
@@ -28,11 +26,7 @@ public class GrupoClave
     [ForeignKey("Cod_grupo")]
     public virtual GrupoAcceso? GrupoAcceso { get; set; }
     [JsonIgnore]
-    public virtual ICollection<Ingreso> Ingreso { get; }
-    [JsonIgnore]
     public virtual ICollection<Pedido> Pedido { get; }
-    [JsonIgnore]
-    public virtual ICollection<Salida> Salida { get; }
     [JsonIgnore]
     public virtual User? user { get; } 
 }

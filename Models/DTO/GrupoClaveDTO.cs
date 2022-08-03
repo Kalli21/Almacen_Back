@@ -10,9 +10,7 @@ public class GrupoClaveDTO
 
     public GrupoClaveDTO()
     {
-        this.Ingreso = new HashSet<Ingreso>();
         this.Pedido = new HashSet<Pedido>();
-        this.Salida = new HashSet<Salida>();
     }
 
     
@@ -27,11 +25,7 @@ public class GrupoClaveDTO
 
     public virtual GrupoAcceso? GrupoAcceso { get; set; }
     
-    public virtual ICollection<Ingreso> Ingreso { get; }
-    
     public virtual ICollection<Pedido> Pedido { get; }
-    
-    public virtual ICollection<Salida> Salida { get; }
     
     public virtual User? user { get; set; }
 }

@@ -10,7 +10,6 @@ public class PedidoDTO
     public PedidoDTO()
     {
         this.DetPedido = new HashSet<DetPedido>();
-        this.Salida = new HashSet<Salida>();
     }
 
     
@@ -49,5 +48,4 @@ public class PedidoDTO
 
     public virtual GrupoClave? GrupoClave { get; set; }
     
-    public virtual ICollection<Salida> Salida { get; set; }
 }

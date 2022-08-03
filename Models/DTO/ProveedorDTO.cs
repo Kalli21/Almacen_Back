@@ -9,7 +9,6 @@ public class ProveedorDTO
 
     public ProveedorDTO()
     {
-        this.Ingreso = new HashSet<Ingreso>();
         this.IngresoSalida = new HashSet<IngresoSalida>();
     }
 
@@ -36,8 +35,6 @@ public class ProveedorDTO
     public string? saludo { get; set; }
 
     public virtual Categoria? Categoria { get; set; }
-    
-    public virtual ICollection<Ingreso> Ingreso { get; }
-    
+        
     public virtual ICollection<IngresoSalida> IngresoSalida { get; }
 }

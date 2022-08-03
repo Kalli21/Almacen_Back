@@ -157,38 +157,6 @@ namespace Almacen_Back.Migrations
                     b.ToTable("AL_CONTROL_STOCK");
                 });
 
-            modelBuilder.Entity("Almacen_Back.Models.DetIngreso", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
-
-                    b.Property<string>("Obs")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<double?>("cant_art_ingreso")
-                        .HasColumnType("float");
-
-                    b.Property<long>("cod_articulo")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("id_ingreso")
-                        .HasColumnType("bigint");
-
-                    b.Property<double?>("prec_unit_ingreso")
-                        .HasColumnType("float");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("cod_articulo");
-
-                    b.HasIndex("id_ingreso");
-
-                    b.ToTable("AL_DET_INGRESO");
-                });
-
             modelBuilder.Entity("Almacen_Back.Models.DetIngresoSalida", b =>
                 {
                     b.Property<long>("Id")
@@ -271,38 +239,6 @@ namespace Almacen_Back.Migrations
                     b.ToTable("AL_DET_PEDIDO");
                 });
 
-            modelBuilder.Entity("Almacen_Back.Models.DetSalida", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
-
-                    b.Property<string>("Obs")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<double?>("cant_articulo")
-                        .HasColumnType("float");
-
-                    b.Property<long>("cod_articulo")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("id_salida")
-                        .HasColumnType("bigint");
-
-                    b.Property<double?>("precio_unit_salida")
-                        .HasColumnType("float");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("cod_articulo");
-
-                    b.HasIndex("id_salida");
-
-                    b.ToTable("AL_DET_SALIDA");
-                });
-
             modelBuilder.Entity("Almacen_Back.Models.GrupoAcceso", b =>
                 {
                     b.Property<string>("Cod_grupo")
@@ -346,46 +282,6 @@ namespace Almacen_Back.Migrations
                     b.HasIndex("Cod_grupo");
 
                     b.ToTable("AL_GRUPO_CLAVE");
-                });
-
-            modelBuilder.Entity("Almacen_Back.Models.Ingreso", b =>
-                {
-                    b.Property<long>("id_ingreso")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("id_ingreso"), 1L, 1);
-
-                    b.Property<DateTime>("Fecha_ingreso")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("Importacion")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Num_guia_ingreso")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Obs")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("cod_almacen")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<long>("cod_clave")
-                        .HasColumnType("bigint");
-
-                    b.Property<string>("cod_proveedor")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("id_ingreso");
-
-                    b.HasIndex("cod_almacen");
-
-                    b.HasIndex("cod_clave");
-
-                    b.HasIndex("cod_proveedor");
-
-                    b.ToTable("AL_INGRESO");
                 });
 
             modelBuilder.Entity("Almacen_Back.Models.IngresoSalida", b =>
@@ -575,47 +471,6 @@ namespace Almacen_Back.Migrations
                     b.ToTable("AL_PROVEEDOR");
                 });
 
-            modelBuilder.Entity("Almacen_Back.Models.Salida", b =>
-                {
-                    b.Property<long>("id_salida")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("id_salida"), 1L, 1);
-
-                    b.Property<DateTime>("Fecha_salida")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Obs")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("cod_almacen")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<long>("cod_clave")
-                        .HasColumnType("bigint");
-
-                    b.Property<bool>("despacho_pedido")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("donacion")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("num_guia_salida")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("venta")
-                        .HasColumnType("bit");
-
-                    b.HasKey("id_salida");
-
-                    b.HasIndex("cod_almacen");
-
-                    b.HasIndex("cod_clave");
-
-                    b.ToTable("AL_SALIDA");
-                });
-
             modelBuilder.Entity("Almacen_Back.Models.TipoTransaccion", b =>
                 {
                     b.Property<string>("cod_tipo_transaccion")
@@ -680,21 +535,6 @@ namespace Almacen_Back.Migrations
                     b.ToTable("AL_USER");
                 });
 
-            modelBuilder.Entity("PedidoSalida", b =>
-                {
-                    b.Property<long>("Pedidoid_pedido")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("Salidaid_salida")
-                        .HasColumnType("bigint");
-
-                    b.HasKey("Pedidoid_pedido", "Salidaid_salida");
-
-                    b.HasIndex("Salidaid_salida");
-
-                    b.ToTable("PedidoSalida");
-                });
-
             modelBuilder.Entity("Almacen_Back.Models.Articulo", b =>
                 {
                     b.HasOne("Almacen_Back.Models.Categoria", "Categoria")
@@ -728,25 +568,6 @@ namespace Almacen_Back.Migrations
                     b.Navigation("Almacen");
 
                     b.Navigation("Articulo");
-                });
-
-            modelBuilder.Entity("Almacen_Back.Models.DetIngreso", b =>
-                {
-                    b.HasOne("Almacen_Back.Models.Articulo", "Articulo")
-                        .WithMany("DetIngreso")
-                        .HasForeignKey("cod_articulo")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("Almacen_Back.Models.Ingreso", "Ingreso")
-                        .WithMany("DetIngreso")
-                        .HasForeignKey("id_ingreso")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("Articulo");
-
-                    b.Navigation("Ingreso");
                 });
 
             modelBuilder.Entity("Almacen_Back.Models.DetIngresoSalida", b =>
@@ -787,25 +608,6 @@ namespace Almacen_Back.Migrations
                     b.Navigation("Pedido");
                 });
 
-            modelBuilder.Entity("Almacen_Back.Models.DetSalida", b =>
-                {
-                    b.HasOne("Almacen_Back.Models.Articulo", "Articulo")
-                        .WithMany("DetSalida")
-                        .HasForeignKey("cod_articulo")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("Almacen_Back.Models.Salida", "Salida")
-                        .WithMany("DetSalida")
-                        .HasForeignKey("id_salida")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("Articulo");
-
-                    b.Navigation("Salida");
-                });
-
             modelBuilder.Entity("Almacen_Back.Models.GrupoClave", b =>
                 {
                     b.HasOne("Almacen_Back.Models.GrupoAcceso", "GrupoAcceso")
@@ -814,31 +616,6 @@ namespace Almacen_Back.Migrations
                         .OnDelete(DeleteBehavior.Restrict);
 
                     b.Navigation("GrupoAcceso");
-                });
-
-            modelBuilder.Entity("Almacen_Back.Models.Ingreso", b =>
-                {
-                    b.HasOne("Almacen_Back.Models.Almacen", "Almacen")
-                        .WithMany("Ingreso")
-                        .HasForeignKey("cod_almacen")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.HasOne("Almacen_Back.Models.GrupoClave", "GrupoClave")
-                        .WithMany("Ingreso")
-                        .HasForeignKey("cod_clave")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("Almacen_Back.Models.Proveedor", "Proveedor")
-                        .WithMany("Ingreso")
-                        .HasForeignKey("cod_proveedor")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.Navigation("Almacen");
-
-                    b.Navigation("GrupoClave");
-
-                    b.Navigation("Proveedor");
                 });
 
             modelBuilder.Entity("Almacen_Back.Models.IngresoSalida", b =>
@@ -893,24 +670,6 @@ namespace Almacen_Back.Migrations
                     b.Navigation("Categoria");
                 });
 
-            modelBuilder.Entity("Almacen_Back.Models.Salida", b =>
-                {
-                    b.HasOne("Almacen_Back.Models.Almacen", "Almacen")
-                        .WithMany("Salida")
-                        .HasForeignKey("cod_almacen")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.HasOne("Almacen_Back.Models.GrupoClave", "GrupoClave")
-                        .WithMany("Salida")
-                        .HasForeignKey("cod_clave")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("Almacen");
-
-                    b.Navigation("GrupoClave");
-                });
-
             modelBuilder.Entity("Almacen_Back.Models.User", b =>
                 {
                     b.HasOne("Almacen_Back.Models.GrupoClave", "GrupoClave")
@@ -922,45 +681,22 @@ namespace Almacen_Back.Migrations
                     b.Navigation("GrupoClave");
                 });
 
-            modelBuilder.Entity("PedidoSalida", b =>
-                {
-                    b.HasOne("Almacen_Back.Models.Pedido", null)
-                        .WithMany()
-                        .HasForeignKey("Pedidoid_pedido")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("Almacen_Back.Models.Salida", null)
-                        .WithMany()
-                        .HasForeignKey("Salidaid_salida")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("Almacen_Back.Models.Almacen", b =>
                 {
                     b.Navigation("ControlStock");
 
-                    b.Navigation("Ingreso");
-
                     b.Navigation("IngresoSalida");
 
                     b.Navigation("Pedido");
-
-                    b.Navigation("Salida");
                 });
 
             modelBuilder.Entity("Almacen_Back.Models.Articulo", b =>
                 {
                     b.Navigation("ControlStock");
 
-                    b.Navigation("DetIngreso");
-
                     b.Navigation("DetIngresoSalida");
 
                     b.Navigation("DetPedido");
-
-                    b.Navigation("DetSalida");
                 });
 
             modelBuilder.Entity("Almacen_Back.Models.Categoria", b =>
@@ -977,16 +713,7 @@ namespace Almacen_Back.Migrations
 
             modelBuilder.Entity("Almacen_Back.Models.GrupoClave", b =>
                 {
-                    b.Navigation("Ingreso");
-
                     b.Navigation("Pedido");
-
-                    b.Navigation("Salida");
-                });
-
-            modelBuilder.Entity("Almacen_Back.Models.Ingreso", b =>
-                {
-                    b.Navigation("DetIngreso");
                 });
 
             modelBuilder.Entity("Almacen_Back.Models.IngresoSalida", b =>
@@ -1001,14 +728,7 @@ namespace Almacen_Back.Migrations
 
             modelBuilder.Entity("Almacen_Back.Models.Proveedor", b =>
                 {
-                    b.Navigation("Ingreso");
-
                     b.Navigation("IngresoSalida");
-                });
-
-            modelBuilder.Entity("Almacen_Back.Models.Salida", b =>
-                {
-                    b.Navigation("DetSalida");
                 });
 
             modelBuilder.Entity("Almacen_Back.Models.TipoTransaccion", b =>

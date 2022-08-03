@@ -11,7 +11,6 @@ public class Pedido
     public Pedido()
     {
         this.DetPedido = new HashSet<DetPedido>();
-        this.Salida = new HashSet<Salida>();
     }
 
     [Key]
@@ -51,6 +50,4 @@ public class Pedido
 
     [ForeignKey("cod_clave")]
     public virtual GrupoClave? GrupoClave { get; set; }
-    [JsonIgnore]
-    public virtual ICollection<Salida> Salida { get; set; }
 }

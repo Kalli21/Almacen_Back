@@ -32,27 +32,19 @@ namespace Almacen_Back.Data
 
         public DbSet<Almacen_Back.Models.ControlStock>? ControlStock { get; set; }
 
-        public DbSet<Almacen_Back.Models.DetIngreso>? DetIngreso { get; set; }
-
         public DbSet<Almacen_Back.Models.DetIngresoSalida>? DetIngresoSalida { get; set; }
 
         public DbSet<Almacen_Back.Models.DetPedido>? DetPedido { get; set; }
 
-        public DbSet<Almacen_Back.Models.DetSalida>? DetSalida { get; set; }
-
         public DbSet<Almacen_Back.Models.GrupoAcceso>? GrupoAcceso { get; set; }
 
         public DbSet<Almacen_Back.Models.GrupoClave>? GrupoClave { get; set; }
-
-        public DbSet<Almacen_Back.Models.Ingreso>? Ingreso { get; set; }
 
         public DbSet<Almacen_Back.Models.IngresoSalida>? IngresoSalida { get; set; }
 
         public DbSet<Almacen_Back.Models.Pedido>? Pedido { get; set; }
 
         public DbSet<Almacen_Back.Models.Proveedor>? Proveedor { get; set; }
-
-        public DbSet<Almacen_Back.Models.Salida>? Salida { get; set; }
 
         public DbSet<Almacen_Back.Models.TipoTransaccion>? TipoTransaccion { get; set; }
 

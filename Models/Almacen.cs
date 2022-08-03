@@ -11,10 +11,8 @@ public class Almacen
     public Almacen()
     {
         this.ControlStock = new HashSet<ControlStock>();
-        this.Ingreso = new HashSet<Ingreso>();
         this.IngresoSalida = new HashSet<IngresoSalida>();
         this.Pedido = new HashSet<Pedido>();
-        this.Salida = new HashSet<Salida>();
 
         this.dir_almacen = "";
         this.tlf_almacen = "";
@@ -34,11 +32,7 @@ public class Almacen
     [JsonIgnore]
     public virtual ICollection<ControlStock> ControlStock { get; }
     [JsonIgnore]
-    public virtual ICollection<Ingreso> Ingreso { get; }
-    [JsonIgnore]
     public virtual ICollection<IngresoSalida> IngresoSalida { get; }
     [JsonIgnore]
     public virtual ICollection<Pedido> Pedido { get; }
-    [JsonIgnore]
-    public virtual ICollection<Salida> Salida { get; }
 }

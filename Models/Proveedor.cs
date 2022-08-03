@@ -10,7 +10,6 @@ public class Proveedor
 
     public Proveedor()
     {
-        this.Ingreso = new HashSet<Ingreso>();
         this.IngresoSalida = new HashSet<IngresoSalida>();
     }
 
@@ -39,8 +38,6 @@ public class Proveedor
 
     [ForeignKey("Cod_categoria")]
     public virtual Categoria? Categoria { get; set; }
-    [JsonIgnore]
-    public virtual ICollection<Ingreso> Ingreso { get; }
     [JsonIgnore]
     public virtual ICollection<IngresoSalida> IngresoSalida { get; }
 }

@@ -11,10 +11,8 @@ public class Articulo
     public Articulo()
     {
         this.ControlStock = new HashSet<ControlStock>();
-        this.DetIngreso = new HashSet<DetIngreso>();
         this.DetIngresoSalida = new HashSet<DetIngresoSalida>();
         this.DetPedido = new HashSet<DetPedido>();
-        this.DetSalida = new HashSet<DetSalida>();
 
         this.des_articulo = "";
         this.ubicacion = "";
@@ -50,11 +48,7 @@ public class Articulo
     [JsonIgnore]
     public virtual ICollection<ControlStock> ControlStock { get; }
     [JsonIgnore]
-    public virtual ICollection<DetIngreso> DetIngreso { get; }
-    [JsonIgnore]
     public virtual ICollection<DetIngresoSalida> DetIngresoSalida { get; }
     [JsonIgnore]
     public virtual ICollection<DetPedido> DetPedido { get; }
-    [JsonIgnore]
-    public virtual ICollection<DetSalida> DetSalida { get; }
 }

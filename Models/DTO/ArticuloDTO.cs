@@ -10,10 +10,8 @@ public class ArticuloDTO
     public ArticuloDTO()
     {
         this.ControlStock = new HashSet<ControlStock>();
-        this.DetIngreso = new HashSet<DetIngreso>();
         this.DetIngresoSalida = new HashSet<DetIngresoSalida>();
         this.DetPedido = new HashSet<DetPedido>();
-        this.DetSalida = new HashSet<DetSalida>();
 
         this.des_articulo = "";
         this.ubicacion = "";
@@ -38,12 +36,8 @@ public class ArticuloDTO
     public virtual UnidadMedida? UnidadMedida { get; set; }
     
     public virtual ICollection<ControlStock> ControlStock { get; }
-    
-    public virtual ICollection<DetIngreso> DetIngreso { get; }
-    
+        
     public virtual ICollection<DetIngresoSalida> DetIngresoSalida { get; }
     
     public virtual ICollection<DetPedido> DetPedido { get; }
-    
-    public virtual ICollection<DetSalida> DetSalida { get; }
 }
