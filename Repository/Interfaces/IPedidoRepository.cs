@@ -4,7 +4,7 @@ namespace Almacen_Back.Repository.Interfaces
 {
     public interface IPedidoRepository
     {
-        Task<ICollection<PedidoDTO>> GetPedidos();
+        Task<(decimal ,ICollection<PedidoDTO>)> GetPedidos(int page);
         Task<PedidoDTO> GetPedidoById(long id);
         Task<PedidoDTO> CreatePedido(PedidoDTO pedidoDTO);
         Task<PedidoDTO> UpdatePedido(PedidoDTO pedidoDTO);

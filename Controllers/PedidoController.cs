@@ -19,9 +19,9 @@ namespace Almacen_Back.Controllers
 
         // GET: api/Pedido
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<PedidoDTO>>> GetPedido()
-        {
-            return await _pedidoService.GetPedidos();
+        public async Task<ActionResult<IEnumerable<PedidoDTO>>> GetPedido([FromQuery] int? page)
+        {               
+            return await _pedidoService.GetPedidos(page);
         }
 
         // GET: api/Pedido/5

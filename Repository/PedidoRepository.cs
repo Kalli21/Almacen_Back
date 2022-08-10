@@ -12,7 +12,7 @@ namespace Almacen_Back.Repository
 
         private readonly Almacen_Back_Context _db;
         private IMapper _mapper;
-
+        private readonly int records = 100;
         public PedidoRepository(Almacen_Back_Context db, IMapper mapper)
         {
             _db = db;
@@ -52,10 +52,16 @@ namespace Almacen_Back.Repository
             return _mapper.Map<PedidoDTO>(pedido);
         }
 
-        public async Task<ICollection<PedidoDTO>> GetPedidos()
+        public async Task<(decimal ,ICollection<PedidoDTO>)> GetPedidos(int page)
         {
-            ICollection<Pedido> pedidos = await _db.Pedido.ToListAsync();
-            return _mapper.Map<ICollection<PedidoDTO>>(pedidos);
+            
+            decimal total_records = await _db.Pedido.CountAsync();
+            int total_pages = Convert.ToInt32(Math.Ceiling(total_records/records)) ;
+
+            ICollection<Pedido> pedidos = await _db.Pedido.Skip((page-1) * records).Take(records).ToListAsync();
+
+            // ICollection<Pedido> pedidos = await _db.Pedido.ToListAsync();
+            return (total_pages,_mapper.Map<ICollection<PedidoDTO>>(pedidos));
         
         }
 

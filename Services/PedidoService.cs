@@ -9,6 +9,7 @@ namespace Almacen_Back.Services
     {
         private readonly IPedidoRepository _pedidoRepository;
         protected ResponseDTO _response;
+        private readonly int records = 100;
 
         public PedidoService(IPedidoRepository pedidoRepository)
         {
@@ -78,12 +79,18 @@ namespace Almacen_Back.Services
             }
         }
 
-        public async Task<ActionResult<IEnumerable<PedidoDTO>>> GetPedidos()
-        {
+        public async Task<ActionResult<IEnumerable<PedidoDTO>>> GetPedidos(int ? page)
+        {            
             try
             {
-                var lista = await _pedidoRepository.GetPedidos();
-                _response.Result = lista;
+                int _page = page ?? 1;
+
+                var (totlaPages,lista) = await _pedidoRepository.GetPedidos(_page);
+                _response.Result = new {
+                    pages = totlaPages,
+                    actualPage = _page,
+                    result = lista                    
+                    };
                 _response.DisplayMessage = "Lista de Pedidos";
             }
             catch (Exception ex)
