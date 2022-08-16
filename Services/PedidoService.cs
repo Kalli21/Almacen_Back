@@ -1,4 +1,5 @@
 using Almacen_Back.Models.DTO;
+using Almacen_Back.Models.Request;
 using Almacen_Back.Repository.Interfaces;
 using Almacen_Back.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
@@ -79,13 +80,13 @@ namespace Almacen_Back.Services
             }
         }
 
-        public async Task<ActionResult<IEnumerable<PedidoDTO>>> GetPedidos(int ? page)
+        public async Task<ActionResult<IEnumerable<PedidoDTO>>> GetPedidos(long? codClave,int ? page, PedidosFiltros filtros)
         {            
             try
             {
                 int _page = page ?? 1;
 
-                var (totlaPages,lista) = await _pedidoRepository.GetPedidos(_page);
+                var (totlaPages,lista) = await _pedidoRepository.GetPedidos(codClave,_page,filtros);
                 _response.Result = new {
                     pages = totlaPages,
                     actualPage = _page,
@@ -123,5 +124,6 @@ namespace Almacen_Back.Services
                 return new BadRequestObjectResult(_response);
             }
         }
+
     }
 }

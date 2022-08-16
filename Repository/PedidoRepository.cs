@@ -1,6 +1,7 @@
 using Almacen_Back.Data;
 using Almacen_Back.Models;
 using Almacen_Back.Models.DTO;
+using Almacen_Back.Models.Request;
 using Almacen_Back.Repository.Interfaces;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
@@ -12,7 +13,7 @@ namespace Almacen_Back.Repository
 
         private readonly Almacen_Back_Context _db;
         private IMapper _mapper;
-        private readonly int records = 100;
+        private readonly int records = 150;
         public PedidoRepository(Almacen_Back_Context db, IMapper mapper)
         {
             _db = db;
@@ -52,15 +53,121 @@ namespace Almacen_Back.Repository
             return _mapper.Map<PedidoDTO>(pedido);
         }
 
-        public async Task<(decimal ,ICollection<PedidoDTO>)> GetPedidos(int page)
+        public async Task<(decimal ,ICollection<PedidoDTO>)> GetPedidos(long? codClave,int page, PedidosFiltros filtros)
         {
             
             decimal total_records = await _db.Pedido.CountAsync();
             int total_pages = Convert.ToInt32(Math.Ceiling(total_records/records)) ;
 
-            ICollection<Pedido> pedidos = await _db.Pedido.Skip((page-1) * records).Take(records).ToListAsync();
+            ICollection<Pedido> pedidos = null;
 
-            // ICollection<Pedido> pedidos = await _db.Pedido.ToListAsync();
+            if (codClave!= null){
+                if(filtros!=null && (filtros.estado!=null || filtros.fechaIni!=null || filtros.fechaFin!=null)){
+                    
+                    if(filtros.estado != null && filtros.fechaIni == null && filtros.fechaFin == null){
+                        pedidos = await _db.Pedido.Where(s =>
+                                            s.cod_clave == codClave &&
+                                            s.enviado == filtros.estado
+                                        ).OrderByDescending(s => s.fecha_pedido).Skip((page - 1) * records).Take(records).ToListAsync();
+                    }
+                    if(filtros.estado == null && filtros.fechaIni != null && filtros.fechaFin == null){
+                        pedidos = await _db.Pedido.Where(s =>
+                                            s.cod_clave == codClave &&
+                                            s.fecha_pedido >= filtros.fechaIni
+                                        ).OrderByDescending(s => s.fecha_pedido).Skip((page - 1) * records).Take(records).ToListAsync();
+                    }
+                    if(filtros.estado == null && filtros.fechaIni == null && filtros.fechaFin != null){
+                        pedidos = await _db.Pedido.Where(s =>
+                                            s.cod_clave == codClave &&
+                                            s.fecha_pedido <= filtros.fechaFin
+                                        ).OrderByDescending(s => s.fecha_pedido).Skip((page - 1) * records).Take(records).ToListAsync();
+                    }
+                    if(filtros.estado != null && filtros.fechaIni != null && filtros.fechaFin == null){
+                        pedidos = await _db.Pedido.Where(s =>
+                                            s.cod_clave == codClave &&
+                                            s.enviado == filtros.estado &&
+                                            s.fecha_pedido >= filtros.fechaIni
+                                        ).OrderByDescending(s => s.fecha_pedido).Skip((page - 1) * records).Take(records).ToListAsync();
+                    }
+                    if(filtros.estado != null && filtros.fechaIni == null && filtros.fechaFin != null){
+                        pedidos = await _db.Pedido.Where(s =>
+                                            s.cod_clave == codClave &&
+                                            s.enviado == filtros.estado &&
+                                            s.fecha_pedido <= filtros.fechaFin
+                                        ).OrderByDescending(s => s.fecha_pedido).Skip((page - 1) * records).Take(records).ToListAsync();
+                    }
+                    if(filtros.estado == null && filtros.fechaIni != null && filtros.fechaFin != null){
+                        pedidos = await _db.Pedido.Where(s =>
+                                            s.cod_clave == codClave &&
+                                            s.fecha_pedido >= filtros.fechaIni &&
+                                            s.fecha_pedido <= filtros.fechaFin
+                                        ).OrderByDescending(s => s.fecha_pedido).Skip((page - 1) * records).Take(records).ToListAsync();
+                    }
+                    if(filtros.estado != null && filtros.fechaIni != null && filtros.fechaFin != null){
+                        pedidos = await _db.Pedido.Where(s =>
+                                            s.cod_clave == codClave &&
+                                            s.enviado == filtros.estado &&
+                                            s.fecha_pedido >= filtros.fechaIni &&
+                                            s.fecha_pedido <= filtros.fechaFin
+                                        ).OrderByDescending(s => s.fecha_pedido).Skip((page - 1) * records).Take(records).ToListAsync();
+                    }
+                    
+                }else{
+                    pedidos = await _db.Pedido.Where(s => s.cod_clave == codClave).OrderByDescending(s => s.fecha_pedido).Skip((page - 1) * records).Take(records).ToListAsync();
+                }                
+                
+            }else{
+                if ((filtros != null) && (filtros.estado!=null || filtros.fechaIni!=null || filtros.fechaFin!=null))
+                {
+                    if(filtros.estado != null && filtros.fechaIni == null && filtros.fechaFin == null){
+                        pedidos = await _db.Pedido.Where(s =>
+                                            s.enviado == filtros.estado
+                                        ).OrderByDescending(s => s.fecha_pedido).Skip((page - 1) * records).Take(records).ToListAsync();
+                    }
+                    if(filtros.estado == null && filtros.fechaIni != null && filtros.fechaFin == null){
+                        pedidos = await _db.Pedido.Where(s =>
+                                            s.fecha_pedido >= filtros.fechaIni
+                                        ).OrderByDescending(s => s.fecha_pedido).Skip((page - 1) * records).Take(records).ToListAsync();
+                    }
+                    if(filtros.estado == null && filtros.fechaIni == null && filtros.fechaFin != null){
+                        pedidos = await _db.Pedido.Where(s =>
+                                            s.fecha_pedido <= filtros.fechaFin
+                                        ).OrderByDescending(s => s.fecha_pedido).Skip((page - 1) * records).Take(records).ToListAsync();
+                    }
+                    if(filtros.estado != null && filtros.fechaIni != null && filtros.fechaFin == null){
+                        pedidos = await _db.Pedido.Where(s =>
+                                            s.enviado == filtros.estado &&
+                                            s.fecha_pedido >= filtros.fechaIni
+                                        ).OrderByDescending(s => s.fecha_pedido).Skip((page - 1) * records).Take(records).ToListAsync();
+                    }
+                    if(filtros.estado != null && filtros.fechaIni == null && filtros.fechaFin != null){
+                        pedidos = await _db.Pedido.Where(s =>
+                                            s.enviado == filtros.estado &&
+                                            s.fecha_pedido <= filtros.fechaFin
+                                        ).OrderByDescending(s => s.fecha_pedido).Skip((page - 1) * records).Take(records).ToListAsync();
+                    }
+                    if(filtros.estado == null && filtros.fechaIni != null && filtros.fechaFin != null){
+                        pedidos = await _db.Pedido.Where(s =>
+                                            s.fecha_pedido >= filtros.fechaIni &&
+                                            s.fecha_pedido <= filtros.fechaFin
+                                        ).OrderByDescending(s => s.fecha_pedido).Skip((page - 1) * records).Take(records).ToListAsync();
+                    }
+                    if(filtros.estado != null && filtros.fechaIni != null && filtros.fechaFin != null){
+                        pedidos = await _db.Pedido.Where(s =>
+                                            s.enviado == filtros.estado &&
+                                            s.fecha_pedido >= filtros.fechaIni &&
+                                            s.fecha_pedido <= filtros.fechaFin
+                                        ).OrderByDescending(s => s.fecha_pedido).Skip((page - 1) * records).Take(records).ToListAsync();
+                    }
+                    
+
+                }else
+                {
+                    pedidos = await _db.Pedido.OrderByDescending(s => s.fecha_pedido).Skip((page - 1) * records).Take(records).ToListAsync();
+                }
+                
+            }           
+            
             return (total_pages,_mapper.Map<ICollection<PedidoDTO>>(pedidos));
         
         }
@@ -72,6 +179,6 @@ namespace Almacen_Back.Repository
             await _db.SaveChangesAsync();
             return _mapper.Map<Pedido, PedidoDTO >(pedido);
         
-        }
+        }        
     }
 }

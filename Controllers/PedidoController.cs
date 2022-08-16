@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Almacen_Back.Models.DTO;
+using Almacen_Back.Models.Request;
 using Almacen_Back.Services.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 
@@ -18,10 +19,10 @@ namespace Almacen_Back.Controllers
         }
 
         // GET: api/Pedido
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<PedidoDTO>>> GetPedido([FromQuery] int? page)
-        {               
-            return await _pedidoService.GetPedidos(page);
+        [HttpPost("PedidosByUser")]
+        public async Task<ActionResult<IEnumerable<PedidoDTO>>> PedidosByUser( PedidosFiltros filtros,[FromQuery] long? codClave,[FromQuery] int? page)
+        {
+            return await _pedidoService.GetPedidos(codClave,page, filtros);
         }
 
         // GET: api/Pedido/5
