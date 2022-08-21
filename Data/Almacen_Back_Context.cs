@@ -51,6 +51,7 @@ namespace Almacen_Back.Data
         public DbSet<Almacen_Back.Models.UnidadMedida>? UnidadMedida { get; set; }
 
         public DbSet<Almacen_Back.Models.User>? User { get; set; }
+        public DbSet<Almacen_Back.Models.Pr_Pg_Py>? Pr_Pg_Py { get; set; }
 
     }
 }

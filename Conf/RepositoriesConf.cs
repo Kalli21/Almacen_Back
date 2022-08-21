@@ -21,6 +21,7 @@ namespace Almacen_Back.Conf
             builder.Services.AddScoped<ITipoTransaccionRepository, TipoTransaccionRepository>();
             builder.Services.AddScoped<IUnidadMedidaRepository, UnidadMedidaRepository>();
             builder.Services.AddScoped<IUserRepository, UserRepository>();
+            builder.Services.AddScoped<IPr_Pg_PyRepository, Pr_Pg_PyRepository>();
         }
     }
 }

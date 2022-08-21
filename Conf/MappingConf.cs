@@ -51,7 +51,10 @@ namespace Almacen_Back.Conf
 
                 config.CreateMap<UserDTO, User>();
                 config.CreateMap<User, UserDTO>();
-                
+
+                config.CreateMap<Pr_Pg_PyDTO, Pr_Pg_Py>();
+                config.CreateMap<Pr_Pg_Py, Pr_Pg_PyDTO>();
+
             });
 
             return mappingConfig;

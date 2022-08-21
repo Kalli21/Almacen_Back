@@ -406,6 +406,46 @@ namespace Almacen_Back.Migrations
                     b.ToTable("AL_PEDIDO");
                 });
 
+            modelBuilder.Entity("Almacen_Back.Models.Pr_Pg_Py", b =>
+                {
+                    b.Property<int>("id_ppp")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id_ppp"), 1L, 1);
+
+                    b.Property<string>("Descripcion")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("cod_interno")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("fecha_modificacion")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("numero_ppp")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("obj_general")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("obj_general2")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("observaciones")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("precedente")
+                        .HasColumnType("int");
+
+                    b.Property<string>("user_modificacion")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("id_ppp");
+
+                    b.ToTable("Pr_Pg_Py");
+                });
+
             modelBuilder.Entity("Almacen_Back.Models.Proveedor", b =>
                 {
                     b.Property<string>("cod_proveedor")

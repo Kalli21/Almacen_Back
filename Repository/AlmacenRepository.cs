@@ -28,7 +28,7 @@ namespace Almacen_Back.Repository
         }
         public async Task<AlmacenDTO> UpdateAlmacen(AlmacenDTO almacenDTO)
         {
-            Almacen almacen = _mapper.Map<AlmacenDTO, Almacen>(almacenDTO);        
+            Almacen almacen = _mapper.Map<AlmacenDTO, Almacen>(almacenDTO);
             _db.Almacen.Update(almacen);
             await _db.SaveChangesAsync();
             return _mapper.Map<Almacen, AlmacenDTO>(almacen);
