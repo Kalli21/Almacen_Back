@@ -55,7 +55,7 @@ namespace Almacen_Back.Migrations
                 columns: table => new
                 {
                     cod_tipo_transaccion = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    descripción = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    descripcion = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ingreso = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>

@@ -516,7 +516,7 @@ namespace Almacen_Back.Migrations
                     b.Property<string>("cod_tipo_transaccion")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("descripción")
+                    b.Property<string>("descripcion")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 

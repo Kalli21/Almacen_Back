@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Almacen_Back.Migrations
 {
     [DbContext(typeof(Almacen_Back_Context))]
-    [Migration("20220821185746_InitialCreate")]
+    [Migration("20220908182457_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -518,7 +518,7 @@ namespace Almacen_Back.Migrations
                     b.Property<string>("cod_tipo_transaccion")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("descripción")
+                    b.Property<string>("descripcion")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 

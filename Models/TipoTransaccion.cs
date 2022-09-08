@@ -16,7 +16,7 @@ public class TipoTransaccion
     [Key]
     public string? cod_tipo_transaccion { get; set; }
     [Required]
-    public string? descripción { get; set; }
+    public string? descripcion { get; set; }
     [Required]
     public bool ingreso { get; set; }
 
